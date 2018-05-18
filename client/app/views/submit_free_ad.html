@@ -1,0 +1,19 @@
+<div class="submit-free-sec">
+    <div class="container">
+        <div class="submit-free-wrapper">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="img-wrapper"> <img src="/images/desk-submit.png" alt="[Image: Desk Submit]" title="Desk Submit" class="img-responsive"> </div>
+                </div>
+                <div class="col-sm-7">
+                    <h3 class="some-sell-head">{{'Do you have something to sell'|translate}}?</h3>
+                    <div class="submit-fre-content">
+                        <p class="text-uppercase">{{'Post your ad FOR FREE'|translate}}</p>
+                        <div> <a ng-show="!isAuth" href="ads/add" title='{{"Submit a Free Ad"|translate}}' ng-click="openLoginModal('login')" class="btn">Submit a Free Ad</a> <a ng-show="isAuth" href="#!/ads/add" title="{{'Submit a Free Ad'|translate}}"
+                                class="btn">{{'Submit a Free Ad'|translate}}</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

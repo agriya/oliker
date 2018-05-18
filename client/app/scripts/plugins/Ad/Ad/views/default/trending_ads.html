@@ -1,0 +1,23 @@
+<div class="trend-ads-sec" ng-show="vm.ads.length > 0">
+    <div class="container">
+        <h2>{{'Trending Ads'|translate}}</h2>
+    </div>
+    <div id="trend-ads-carousal" class="carousel slide" data-ride="carousel">
+        <div class="container">
+            <div uib-carousel active="vm.active" interval="vm.myInterval" no-wrap="vm.noWrapSlides">
+                <div uib-slide ng-repeat="ad in vm.ads track by $index" index="$index">
+                    <div class="col-sm-6 col-md-3" ng-repeat="(key,value) in ad">
+                        <div class="trends-block">
+                            <a href="ad/{{value.id}}/{{value.slug}}" title="{{value.title}}" class="show"> <img ng-src="{{value.image_name}}" alt="[Image: Ad]" title="{{value.title}}" class="img-responsive"> <span class="show text-center">{{value.price | currency : selectedCurrency.currency_symbol : GeneralConfig.fraction}}</span>                                </a>
+                            <h3 class="text-center"><a href="ad/{{value.id}}/{{value.slug}}" class="truncate" title="{{value.title}}">{{value.title}}</a></h3>
+                            <ul class="list-inline text-center">
+                                <li> <i class="fa fa-map-marker"></i> <span class="address-b" title="{{value.location}}">{{value.location}}</span> </li>
+                                <li> <i class="fa fa-clock-o"></i> <span class="address-b"> <time am-time-ago="value.created_at" title="{{ value.created_at | amDateFormat: ' MMMM Do YYYY, h:mm a' }}"></time></span> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

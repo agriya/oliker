@@ -1,0 +1,74 @@
+<div ng-controller="AdSubscriptionPackagesController as vm">
+    <!-- BEGIN:  TABLE-BLK SECTION -->
+    <section class="table-blk">
+        <div ng-include="'views/main_tab.html'"></div>
+    </section>
+    <!-- END: TABLE-BLK SECTION -->
+    <section class="table-content">
+        <div class="container">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="hom">
+                    <div class="thumbnail">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div ng-include="'views/menu_tab.html'"></div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div ng-include="'views/loader.html'"></div>
+                            <div role="tabpanel" class="tab-pane fade in active" ng-show="!vm.loader" id="home-acti">
+                                <div class="table-responsive" ng-show="vm.subscription_packages.length">
+                                    <table class="table table-striped list-group-item-text">
+                                        <thead>
+                                            <tr>
+                                                <th>{{'Created'| translate}}</th>
+                                                <th>{{'Package'| translate}}</th>
+                                                <th>{{'Price'| translate}}({{settings.CURRENCY_SYMBOL}})</th>
+                                                <th>{{'Allowed Ads'| translate}}</th>
+                                                <th>{{'Points'|translate}}</th>
+                                                <th>{{'Used Points'|translate}}</th>
+                                                <th>{{'Expiry Date'|translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="subscription_package in vm.subscription_packages">
+                                                <td>{{subscription_package.created_at |amDateFormat:'LL'}}</td>
+                                                <td>{{subscription_package.ad_package.name}}</td>
+                                                <td>{{subscription_package.amount}}</td>
+                                                <td>{{subscription_package.allowed_ad_count}}</td>
+                                                <td>{{subscription_package.points}}</td>
+                                                <td>{{subscription_package.used_points}}</td>
+                                                <td>{{subscription_package.expiry_date | amDateFormat:'DD-MMM-YYYY'}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger mspace" ng-show="!vm.loader && !vm.subscription_packages.length">
+                                <p class="text-center">{{'No Subscription Package Found'|translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- START: ACTION FREE SECTION -->
+    <section class="sec-action-blk">
+        <div class="container">
+            <div class="pull-right list-rgt">
+                <div class="row" ng-show="!vm.loader">
+                    <div class="col-md-12 text-center" ng-hide="(vm.subscription_packages.length < vm.items_per_page) && vm.current_page==1">
+                        <uib-pagination ng-hide="!vm.subscription_packages.length" previous-text="Previous" next-text="Next" total-items="vm.total_items" num-pages="vm.no_of_pages" ng-model="vm.current_page" max-size="vm.maxSize" class="pagination-sm" boundary-link-numbers="true"
+                            rotate="false" items-per-page="vm.items_per_page" ng-change="vm.paginate()"></uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- START: SUBMIT FREE SECTION -->
+    <div ng-if="!vm.loader" ng-include="'views/submit_free_ad.html'"></div>
+    <!-- END: SUBMIT FREE SECTION -->
+    <!--<div ng-include="'views/main_categories.html'"></div>-->
+    <!-- END: POPULAR SEARCH SECTION -->
+</div>

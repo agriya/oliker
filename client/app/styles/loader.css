@@ -1,0 +1,184 @@
+/* #preloader {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:#fff;
+    z-index:999;
+}
+
+#status {
+    width:200px;
+    height:200px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    background-image:url(../images/loader.gif);
+    background-repeat:no-repeat;
+    background-position:center;
+    margin:-100px 0 0 -100px;
+} */
+
+/*loader*/
+ .cssloader{
+  zoom:1;/* Increase this for a bigger symbole*/  
+  display:block;  
+  width:16px;
+  height:16px;  
+  margin:auto;
+  position:relative;
+  top:20px;
+  
+  animation: wait .80s steps(1, start) infinite;
+  -webkit-animation: wait .80s steps(1, start) infinite;
+  -moz-animation: wait .80s steps(1, start) infinite;
+  -o-animation: wait .80s steps(1, start) infinite;
+  
+  background: linear-gradient(0deg, #e6f0ff 1px, transparent 0, transparent 8px, #e6f0ff 8px),   /* 6  */
+              linear-gradient(90deg, #e6f0ff 1px, #0460ec 0, #0460ec 3px, #e6f0ff 3px),
+    
+              linear-gradient(0deg, #cde1fe 1px, transparent 0, transparent 8px, #cde1fe 8px),   /* 5  */
+              linear-gradient(90deg, #cde1fe 1px, #b4d1fe 0, #b4d1fe 3px, #cde1fe 3px),
+    
+              linear-gradient(0deg,  #b4d1fe 1px, transparent 0, transparent 8px,  #b4d1fe 8px),   /* 4  */
+              linear-gradient(90deg,  #b4d1fe 1px, #b4d1fe 0, #b4d1fe 3px,  #b4d1fe 3px),
+    
+              linear-gradient(0deg,  #b4d1fe 1px, transparent 0, transparent 10px,  #b4d1fe 10px), /* 3  */
+              linear-gradient(90deg,  #b4d1fe 1px, #cde1fe 0, #cde1fe 3px,  #b4d1fe 3px),
+              
+              linear-gradient(0deg, #0460ec 1px, transparent 0, transparent 15px, #0460ec 15px), /* 2  */
+              linear-gradient(90deg, #0460ec 1px, #b4d1fe 0, #b4d1fe 3px, #0460ec 3px),
+              
+              linear-gradient(0deg, #0460ec 1px, transparent 0, transparent 15px, #0460ec 15px), /* 1  */
+              linear-gradient(90deg, #0460ec 1px, #4f94fc 0, #4f94fc 3px, #0460ec 3px);  
+			  background-repeat: no-repeat;
+  background: -webkit-linear-gradient(0deg, #e6f0ff 1px, transparent 0, transparent 8px, #e6f0ff 8px),   /* 6  */
+              -webkit-linear-gradient(90deg, #e6f0ff 1px, #0460ec 0, #0460ec 3px, #e6f0ff 3px),
+    
+              -webkit-linear-gradient(0deg, #cde1fe 1px, transparent 0, transparent 8px, #cde1fe 8px),   /* 5  */
+              -webkit-linear-gradient(90deg, #cde1fe 1px, #b4d1fe 0, #b4d1fe 3px, #cde1fe 3px),
+    
+              -webkit-linear-gradient(0deg,  #b4d1fe 1px, transparent 0, transparent 8px,  #b4d1fe 8px),   /* 4  */
+              -webkit-linear-gradient(90deg,  #b4d1fe 1px, #b4d1fe 0, #b4d1fe 3px,  #b4d1fe 3px),
+    
+              -webkit-linear-gradient(0deg,  #b4d1fe 1px, transparent 0, transparent 10px,  #b4d1fe 10px), /* 3  */
+              -webkit-linear-gradient(90deg,  #b4d1fe 1px, #cde1fe 0, #cde1fe 3px,  #b4d1fe 3px),
+              
+              -webkit-linear-gradient(0deg, #0460ec 1px, transparent 0, transparent 15px, #0460ec 15px), /* 2  */
+              -webkit-linear-gradient(90deg, #0460ec 1px, #b4d1fe 0, #b4d1fe 3px, #0460ec 3px),
+              
+              -webkit-linear-gradient(0deg, #0460ec 1px, transparent 0, transparent 15px, #0460ec 15px), /* 1  */
+              -webkit-linear-gradient(90deg, #0460ec 1px, #4f94fc 0, #4f94fc 3px, #0460ec 3px);  
+			  background-repeat: no-repeat;		  
+  
+  background-size: 4px 9px,   /* 6 */  4px 9px, 4px 9px,   /* 5 */ 4px 9px, 4px 9px,   /* 4 */  4px 9px, 4px 11px,  /* 3 */ 4px 11px, 4px 16px,  /* 2 */ 4px 16px, 4px 16px,  /* 1 */  4px 16px;
+  
+  background-position:-4px 3px, -4px 3px, -4px 3px, -4px 3px, -4px 3px, -4px 3px, -4px 2px, -4px 2px, -4px 0, -4px 0, -4px 0, -4px 0;
+}
+
+@keyframes wait{
+  12.5%{
+    background-position:  -4px,  /* 6 */ -4px,-4px,  /* 5 */ -4px, -4px,  /* 4 */ -4px, -4px,  /* 3 */ -4px, -4px,  /* 2 */ -4px, 0 ,  /* 1 */ 0 ;
+  }
+  25%{
+    background-position: -4px,  /* 6 */ -4px, -4px,  /* 5 */ -4px, -4px,  /* 4 */ -4px, -4px,  /* 3 */ -4px, 0,  /* 2 */ 0, 6px,  /* 1 */6px;
+  }
+  37.5%{
+    background-position: -4px,  /* 6 */ -4px,-4px,  /* 5 */-4px,-4px,  /* 4 */-4px, 0,  /* 3 */ 0,6px,  /* 2 */ 6px, 12px,  /* 1 */ 12px;
+  }
+  50%{
+    background-position: -4px,  /* 6 */ -4px,-4px,  /* 5 */-4px, 0,  /* 4 */ 0,6px,  /* 3 */6px,12px,  /* 2 */12px,-4px,  /* 1 */-4px;
+  }
+  62.5%{
+    background-position: -4px,  /* 6 */ -4px, 0,  /* 5 */  0,6px,  /* 4 */6px,12px,  /* 3 */12px, -4px,  /* 2 */-4px,-4px,  /* 1 */ -4px;
+  }
+  75%{
+    background-position:     0,  /* 6 */  0, 6px,  /* 5 */ 6px,12px,  /* 4 */12px, -4px,  /* 3 */ -4px,-4px,  /* 2 */-4px,-4px,  /* 1 */ -4px;
+  }
+  87.5%{
+    background-position:   6px,  /* 6 */  6px, 12px,  /* 5 */12px,-4px,  /* 4 */ -4px, -4px,  /* 3 */ -4px,-4px,  /* 2 */-4px,-4px,  /* 1 */-4px;
+  }
+  100%{
+    background-position:    12px,  /* 6 */ 12px, -4px,  /* 5 */ -4px, -4px,  /* 4 */ -4px,-4px,  /* 3 */-4px,-4px,  /* 2 */-4px,-4px,  /* 1 */-4px;
+  }
+}
+@-moz-keyframes wait{
+  12.5%{
+    background-position:  -4px,  /* 6 */ -4px,-4px,  /* 5 */ -4px, -4px,  /* 4 */ -4px, -4px,  /* 3 */ -4px, -4px,  /* 2 */ -4px, 0 ,  /* 1 */ 0 ;
+  }
+  25%{
+    background-position: -4px,  /* 6 */ -4px, -4px,  /* 5 */ -4px, -4px,  /* 4 */ -4px, -4px,  /* 3 */ -4px, 0,  /* 2 */ 0, 6px,  /* 1 */6px;
+  }
+  37.5%{
+    background-position: -4px,  /* 6 */ -4px,-4px,  /* 5 */-4px,-4px,  /* 4 */-4px, 0,  /* 3 */ 0,6px,  /* 2 */ 6px, 12px,  /* 1 */ 12px;
+  }
+  50%{
+    background-position: -4px,  /* 6 */ -4px,-4px,  /* 5 */-4px, 0,  /* 4 */ 0,6px,  /* 3 */6px,12px,  /* 2 */12px,-4px,  /* 1 */-4px;
+  }
+  62.5%{
+    background-position: -4px,  /* 6 */ -4px, 0,  /* 5 */  0,6px,  /* 4 */6px,12px,  /* 3 */12px, -4px,  /* 2 */-4px,-4px,  /* 1 */ -4px;
+  }
+  75%{
+    background-position:     0,  /* 6 */  0, 6px,  /* 5 */ 6px,12px,  /* 4 */12px, -4px,  /* 3 */ -4px,-4px,  /* 2 */-4px,-4px,  /* 1 */ -4px;
+  }
+  87.5%{
+    background-position:   6px,  /* 6 */  6px, 12px,  /* 5 */12px,-4px,  /* 4 */ -4px, -4px,  /* 3 */ -4px,-4px,  /* 2 */-4px,-4px,  /* 1 */-4px;
+  }
+  100%{
+    background-position:    12px,  /* 6 */ 12px, -4px,  /* 5 */ -4px, -4px,  /* 4 */ -4px,-4px,  /* 3 */-4px,-4px,  /* 2 */-4px,-4px,  /* 1 */-4px;
+  }
+}
+@-webkit-keyframes wait{
+  12.5%{
+    background-position:  -4px,  /* 6 */ -4px,-4px,  /* 5 */ -4px, -4px,  /* 4 */ -4px, -4px,  /* 3 */ -4px, -4px,  /* 2 */ -4px, 0 ,  /* 1 */ 0 ;
+  }
+  25%{
+    background-position: -4px,  /* 6 */ -4px, -4px,  /* 5 */ -4px, -4px,  /* 4 */ -4px, -4px,  /* 3 */ -4px, 0,  /* 2 */ 0, 6px,  /* 1 */6px;
+  }
+  37.5%{
+    background-position: -4px,  /* 6 */ -4px,-4px,  /* 5 */-4px,-4px,  /* 4 */-4px, 0,  /* 3 */ 0,6px,  /* 2 */ 6px, 12px,  /* 1 */ 12px;
+  }
+  50%{
+    background-position: -4px,  /* 6 */ -4px,-4px,  /* 5 */-4px, 0,  /* 4 */ 0,6px,  /* 3 */6px,12px,  /* 2 */12px,-4px,  /* 1 */-4px;
+  }
+  62.5%{
+    background-position: -4px,  /* 6 */ -4px, 0,  /* 5 */  0,6px,  /* 4 */6px,12px,  /* 3 */12px, -4px,  /* 2 */-4px,-4px,  /* 1 */ -4px;
+  }
+  75%{
+    background-position:     0,  /* 6 */  0, 6px,  /* 5 */ 6px,12px,  /* 4 */12px, -4px,  /* 3 */ -4px,-4px,  /* 2 */-4px,-4px,  /* 1 */ -4px;
+  }
+  87.5%{
+    background-position:   6px,  /* 6 */  6px, 12px,  /* 5 */12px,-4px,  /* 4 */ -4px, -4px,  /* 3 */ -4px,-4px,  /* 2 */-4px,-4px,  /* 1 */-4px;
+  }
+  100%{
+    background-position:    12px,  /* 6 */ 12px, -4px,  /* 5 */ -4px, -4px,  /* 4 */ -4px,-4px,  /* 3 */-4px,-4px,  /* 2 */-4px,-4px,  /* 1 */-4px;
+  }
+}
+@-o-keyframes wait{
+  12.5%{
+    background-position:  -4px,  /* 6 */ -4px,-4px,  /* 5 */ -4px, -4px,  /* 4 */ -4px, -4px,  /* 3 */ -4px, -4px,  /* 2 */ -4px, 0 ,  /* 1 */ 0 ;
+  }
+  25%{
+    background-position: -4px,  /* 6 */ -4px, -4px,  /* 5 */ -4px, -4px,  /* 4 */ -4px, -4px,  /* 3 */ -4px, 0,  /* 2 */ 0, 6px,  /* 1 */6px;
+  }
+  37.5%{
+    background-position: -4px,  /* 6 */ -4px,-4px,  /* 5 */-4px,-4px,  /* 4 */-4px, 0,  /* 3 */ 0,6px,  /* 2 */ 6px, 12px,  /* 1 */ 12px;
+  }
+  50%{
+    background-position: -4px,  /* 6 */ -4px,-4px,  /* 5 */-4px, 0,  /* 4 */ 0,6px,  /* 3 */6px,12px,  /* 2 */12px,-4px,  /* 1 */-4px;
+  }
+  62.5%{
+    background-position: -4px,  /* 6 */ -4px, 0,  /* 5 */  0,6px,  /* 4 */6px,12px,  /* 3 */12px, -4px,  /* 2 */-4px,-4px,  /* 1 */ -4px;
+  }
+  75%{
+    background-position:     0,  /* 6 */  0, 6px,  /* 5 */ 6px,12px,  /* 4 */12px, -4px,  /* 3 */ -4px,-4px,  /* 2 */-4px,-4px,  /* 1 */ -4px;
+  }
+  87.5%{
+    background-position:   6px,  /* 6 */  6px, 12px,  /* 5 */12px,-4px,  /* 4 */ -4px, -4px,  /* 3 */ -4px,-4px,  /* 2 */-4px,-4px,  /* 1 */-4px;
+  }
+  100%{
+    background-position:    12px,  /* 6 */ 12px, -4px,  /* 5 */ -4px, -4px,  /* 4 */ -4px,-4px,  /* 3 */-4px,-4px,  /* 2 */-4px,-4px,  /* 1 */-4px;
+  }
+}
+   

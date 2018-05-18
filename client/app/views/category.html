@@ -1,0 +1,51 @@
+<div id="search-page" ng-controller="CategoryController as vm">
+    <div class="collections">
+        <div class="container">
+            <div class="row">
+                <div class="collection-banner text-center">
+                    <div class="center-block">
+                        <a href="" title="{{vm.category.name}}" class="show"><img ng-src="{{vm.category.photo_url}}" alt="[Image: Category]" class="img-responsive center-block"></a>
+                    </div>
+                    <div class="banner-content">
+                        <h3 class="textb">{{vm.category.name}}</h3>
+                        <p class="clearfix" ng-bind-html="vm.category.description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix">
+        <ul class="order-block list-unstyled">
+            <li class="col-sm-12" ng-repeat="(key,sub_category) in vm.category.subcategories">
+                <div class="container">
+                    <!----Right side---->
+                    <div class="media" ng-if="key%2 === 1">
+                        <h4>{{sub_category.name}}</h4>
+                        <div class="media-left"> <img class="media-object" title="{{sub_category.name}}" ng-src="{{sub_category.photo_url}}" alt="[Image: SubCategory]"> </div>
+                        <div class="media-body">
+                            <p>{{sub_category.description}}</p>
+                            <p> <a href="ads?category_id={{sub_category.id}} " title='{{"Browse "|translate}}' class="textb">{{'Browse'|translate}}</a> <span class="hor-space " ng-if="sub_category.subcategories.length">{{'or'|translate}}</span> <a href="category/{{sub_category.id}}/{{sub_category.slug}}"
+                                    ng-if="sub_category.subcategories.length" title='{{"Explore "|translate}}'>{{'Explore'|translate}}</a> <span class="hor-space " ng-hide="!sub_category.subcategories.length">{{'or'|translate}}</span> <a href="ads/add?category_id={{sub_category.id}} "
+                                    ng-if="sub_category.subcategories.length" title='{{"Post Listing "|translate}}' class="btn btn-primary no-mar head-search-btun ">{{'Post Listing'|translate}}</a> </p>
+                        </div>
+                    </div>
+                    <!-------Left side --->
+                    <div class="media " ng-if="key%2===0 ">
+                        <h4 class="media-heading ">{{sub_category.name}}</h4>
+                        <div class="media-body">
+                            <p>{{sub_category.description}}</p>
+                            <div class="col-sm-10 no-pad">
+                                <p> <a href="ads?category_id={{sub_category.id}} " title='{{"Browse "|translate}}' class="textb">{{'Browse'|translate}}</a> <span class="hor-space " ng-if="sub_category.subcategories.length">{{'or'|translate}}</span>
+                                    <a
+                                        href="category/{{sub_category.id}}/{{sub_category.slug}}" ng-if="sub_category.subcategories.length" title='{{"Explore "|translate}}'>{{'Explore'|translate}}</a> <span class="hor-space " ng-hide="!sub_category.subcategories.length">{{'or'|translate}}</span> <a href="ads/add?category_id={{sub_category.id}} " ng-if="sub_category.subcategories.length"
+                                            title='{{"Post Listing "|translate}}' class="btn btn-primary no-mar head-search-btun ">{{'Post Listing'|translate}}</a> </p>
+                            </div>
+                        </div>
+                        <div class="media-right"> <img class="media-object " title="{{sub_category.name}} " ng-src="{{sub_category.photo_url}} " alt="[Image: Subcategory] "> </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- Footer -->
+</div>

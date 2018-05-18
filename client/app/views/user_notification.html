@@ -1,0 +1,85 @@
+<div ng-controller='UsersNotificationController as vm'>
+    <div ng-include="'views/main_tab.html'"></div>
+    <section class="table-content custom-tabs">
+        <div class="container">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="hom">
+                    <div class="thumbnail">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div ng-include="'views/menu_tab.html'"></div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div ng-include="'views/loader.html'"></div>
+                            <div role="tabpanel" class="tab-pane fade in active" id="home-acti">
+                                <div class="notfications-content">
+                                    <h3 class="h4 ver-space15">{{'Activity Notifications'|translate}}</h3>
+                                </div>
+                                <div class="panel">
+                                    <div class="clearfix">
+                                        <form role="form" name="vm.userNotification" ng-submit="vm.userNotificationUpdate()">
+                                            <!--<div class="row">-->
+                                            <div class="col-sm-4">
+                                                <p>{{'SMS me when'|translate}}:</p>
+                                                <div class="checkbox"> <label for="is_price_reduced_on_favorite_ads_to_sms ">
+                                                <input type="checkbox" value="2" id="is_price_reduced_on_favorite_ads_to_sms " ng-model="vm.user.is_price_reduced_on_favorite_ads_to_sms ">
+                                                <span>{{'Favorite Ads On Price Reduced'|translate}}</span>
+                                            </label> </div>
+                                                <div class="checkbox"> <label for="is_new_messages_received_notification_to_sms ">
+                                                <input type="checkbox" value="3" id="is_new_messages_received_notification_to_sms " ng-model="vm.user.is_new_messages_received_notification_to_sms ">
+                                                <span>{{'Received Notification On New Messages'|translate}}</span>
+                                            </label> </div>
+                                                <div class="checkbox"> <label for="is_new_ads_on_saved_searches_to_sms ">
+                                                <input type="checkbox" value="4" id="is_new_ads_on_saved_searches_to_sms " ng-model="vm.user.is_new_ads_on_saved_searches_to_sms ">
+                                                <span>{{'Saved Searches On New Ads'|translate}}</span>
+                                            </label> </div>
+                                            </div>
+                                            <div class="col-sm-6 ">
+                                                <p>{{'Email me to'|translate}}:</p>
+                                                <div class="checkbox "> <label for="is_price_reduced_on_favorite_ads_to_email ">
+                                                <input type="checkbox" value="2" id="is_price_reduced_on_favorite_ads_to_email " ng-model="vm.user.is_price_reduced_on_favorite_ads_to_email ">
+                                                <span class="text-capitalize ">{{'Favorite Ads On Price Reduced'|translate}}</span>
+                                            </label></div>
+                                                <div class="checkbox"> <label for="is_new_messages_received_notification_to_email ">
+                                                <input type="checkbox" value="3" id="is_new_messages_received_notification_to_email " ng-model="vm.user.is_new_messages_received_notification_to_email ">
+                                                <span class="text-capitalize ">{{'Received Notification On New Messages'|translate}}</span>
+                                            </label></div>
+                                                <div class="checkbox"> <label for="is_new_ads_on_saved_searches_to_email ">
+                                                <input type="checkbox" value="4" id="is_new_ads_on_saved_searches_to_email " ng-model="vm.user.is_new_ads_on_saved_searches_to_email ">
+                                                <span class="text-capitalize ">{{'Saved Searches On New Ads'|translate}}</span>
+                                            </label></div>
+                                            </div>
+                                            <div class="col-xs-12 "> <button type="submit " class="btn btn-primary">{{'Update'|translate}}</button> </div>
+                                            <!--</div>-->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- START: ACTION FREE SECTION -->
+    <section class="sec-action-blk">
+        <div class="container">
+            <div class="pull-right list-rgt">
+                <div class="row" ng-show="!vm.loader">
+                    <div class="col-md-12 text-center" ng-hide="(vm.cashWithdrawalsList.length < vm.itemsPerPage) && currentPage==1">
+                        <uib-pagination ng-hide="!vm.cashWithdrawalsList.length" previous-text="Previous" next-text="Next" total-items="vm.totalItems" num-pages="vm.numPages" ng-model="vm.currentPage" max-size="vm.maxSize" class="pagination-sm" boundary-link-numbers="true"
+                            rotate="false" items-per-page="vm.itemsPerPage" ng-change="vm.paginate()"></uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END: ACTION FREE SECTION -->
+    <!-- START: SUBMIT FREE SECTION -->
+    <!-- START: SUBMIT FREE SECTION -->
+    <div ng-include="'views/submit_free_ad.html'"></div>
+    <!-- END: SUBMIT FREE SECTION -->
+    <!--<div ng-include="'views/main_categories.html'"></div>-->
+    <!-- END: POPULAR SEARCH SECTION -->
+</div>

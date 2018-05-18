@@ -1,0 +1,25 @@
+<ul ng-show="vm.ad_tab||vm.favorite_tab||vm.search_tab" class="nav nav-pills navbar-btn list-group-item-text ver-space15">
+    <li role="presentation" class="{{vm.ad_tab}}"> <a href="my_ads" title='{{"My Ads"|translate}}' class="text-16">{{'My Ads'|translate}}</a> </li>
+    <li role="presentation" class="{{vm.favorite_tab}}"> <a href="favorites" title='{{"Ad Favorites"|translate}}' class="text-16">{{'Ad Favorites'|translate}}  </a> </li>
+    <li role="presentation" class="{{vm.search_tab}}"> <a href="searches" title='{{"Ad Searches"|translate}}' class="text-16">{{'Ad Searches'|translate}}  </a> </li>
+</ul>
+<ul ng-show="vm.cash_tab||vm.trans_tab||vm.money_transtab||vm.Wallet_tab||vm.credit_card_tab" class="nav nav-pills navbar-btn list-group-item-text ver-space15">
+    <li role="presentation" class="{{vm.cash_tab}}"> <a href="cash_withdrawals" title='{{"Cash Withdrawals"|translate}}' class="text-16">{{'Cash Withdrawals'|translate}} </a> </li>
+    <li role="presentation" class="{{vm.trans_tab}}"> <a href="transactions" title='{{"Transactions"|translate}}' class="text-16">{{'Transactions'|translate}}</a> </li>
+    <li role="presentation" class="{{vm.money_transtab}}"> <a href="money_transfer_accounts" title='{{"Money Transfer Account"|translate}}' class="text-16">{{'Money Transfer Account'|translate}}  </a> </li>
+    <li role="presentation" class="{{vm.Wallet_tab}}"> <a href="wallets" title='{{"Wallet"|translate}}' class="text-16">{{'Wallet'|translate}}</a> </li>
+    <li role="presentation" class="{{vm.credit_card_tab}}"> <a href="add/credit_card" title='{{"Add Credit Card"|translate}}' class="text-16">{{'Add CreditCard'|translate}}</a> </li>
+</ul>
+<ul ng-show="vm.subscription_package_tab||vm.package_tab" class="nav nav-pills navbar-btn list-group-item-text ver-space15">
+    <li role="presentation" class="{{vm.subscription_package_tab}}"> <a href="ad_subscription_packages" title='{{"Subscribed Packages"|translate}}' class="text-16">{{'Subscribed Packages'|translate}}</a> </li>
+    <li role="presentation" class="{{vm.package_tab}}"> <a href="user_ad_packages" title='{{"Packages"|translate}}' class="text-16">{{'Packages'|translate}}</a> </li>
+</ul>
+<ul ng-show="vm.inbox_tab||vm.sent_tab" class="nav nav-pills navbar-btn list-group-item-text ver-space15">
+    <li role="presentation" class="{{vm.inbox_tab}}"> <a href="messages/inbox" title='{{"Inbox"|translate}}' class="text-16">{{'Inbox'|translate}}</a> </li>
+    <li role="presentation" class="{{vm.sent_tab}}"> <a href="messages/sent" title='{{"Sent"|translate}}' class="text-16">{{'Sent'|translate}}  </a> </li>
+</ul>
+<ul ng-show="vm.setting_tab||vm.password_tab||vm.notification_tab" class="nav nav-pills navbar-btn list-group-item-text ver-space15">
+    <li role="presentation" class="{{vm.setting_tab}}"> <a href="users/settings" title='{{"Account Settings"|translate}}' class="text-16">{{'Account Settings'|translate}}  </a> </li>
+    <li role="presentation" class="{{vm.password_tab}}"> <a href="users/change_password" title='{{"Change Password"| translate}}' class="text-16">{{'Change Password'|translate}}</a> </li>
+    <li role="presentation" class="{{vm.notification_tab}}"> <a href="user/notification" title='{{"Notifications"| translate}}' class="text-16">{{'Notifications'|translate}}  </a> </li>
+</ul>

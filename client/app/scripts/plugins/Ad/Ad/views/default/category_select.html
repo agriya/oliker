@@ -1,0 +1,7 @@
+<div class="input-group-btn search-panel">
+    <ui-select class="ct-search" ng-model="mainVm.category_name.selected" title='{{"Select Category"|translate}}' on-select="vm.selectCategory($item)">
+        <ui-select-match placeholder="{{'Select Category'|translate}}">{{$select.selected.name}}</ui-select-match>
+        <ui-select-choices position="down" repeat="category in vm.categories track by $index" refresh="vm.getCategories($select.search)" refresh-delay="0">
+            <div class="sl-name" ng-bind-html="category.name | highlight: $select.search"></div>
+        </ui-select-choices>
+    </ui-select><span class="divider-ver"></span> </div>

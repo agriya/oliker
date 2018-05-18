@@ -1,0 +1,123 @@
+<!-- BEGIN: MAIN -->
+<div class="main">
+    <!-- BEGIN: BANNER SECTION -->
+    <div class="index-baner">
+        <div class="baner-cont">
+            <div id="indexContCarousal" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active"> <img src="/images/indexBanerBg.png" class="img-responsive"> </div>
+                    <div class="item"> <img src="/images/indexBanerBg.png" class="img-responsive"> </div>
+                    <div class="item"> <img src="/images/indexBanerBg.png" class="img-responsive"> </div>
+                    <div class="carousel-caption">
+                        <div class="text-center slide-content">
+                            <h3>Get the Cool new</h3>
+                            <h2 class="text-uppercase">{{'find classified directory'|translate}}</h2>
+                            <p>{{'Experts more then 1000+ home, financial, jobs services and connect with expert providers now!'|translate}}</p>
+                        </div>
+                    </div>
+                </div>
+                <ol class="carousel-indicators">
+                    <li data-target="#indexContCarousal" data-slide-to="0" class="active"></li>
+                    <li data-target="#indexContCarousal" data-slide-to="1" class=""></li>
+                    <li data-target="#indexContCarousal" data-slide-to="2" class=""></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- END: BANNER SECTION -->
+    <!-- BEGIN: INDEX CATEGARY SECTION -->
+    <category-list></category-list>
+    <!-- END: INDEX CATEGARY SECTION -->
+    <!-- BEGIN: TRENDING ADS SECTION -->
+    <trending-ads></trending-ads>
+    <!-- END: TRENDING ADS SECTION -->
+    <!-- BEGIN: EXPLORE CATEGARIES SECTION -->
+    <category-explore></category-explore>
+    <!-- END: EXPLORE CATEGARIES SECTION -->
+    <!-- BEGIN: ARE YOU LOOKING SECTION -->
+    <div class="you-look-sec">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="post-free">
+                        <h2> {{'Are you looking for something?'|translate}} </h2>
+                        <p> {{'Locally? Many things in life work best locally. For example, if you are searching online for a used car or a part time job, local solutions are often the best solutions. This is why Locanto free classifieds offers a local marketplace
+                            in your own community. Find a new job in your area through our Jobs pages, buy used cars near you with our Vehicles category, or find new homes in your city in our Real Estate classifieds. You can also find local offers and
+                            opportunities in our classified ads under Personals, Pets, Community, Buy & Sell, and Services categories'|translate}} </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="post-free-add">
+                        <h2> {{'Would you like to post a classified Ad?'|translate}} </h2>
+                        <p> {{'Posting a classified ad on free classifieds is very easy and works just like the classified ads posted in the local newspaper classifieds, except that with free classifieds your classified ads are featured for as long as you
+                            would like, and therefore reach a much larger audience! Locanto free classifieds also offer you better classified ads features because you can upload pictures, use HTML codes, and put a link to your website in your ad. To post
+                            a free classified ad now and sell online, simply choose your city or click on the link below.'|translate}} </p>
+                        <div class="post-btun-block"> <a href="ads/add" title="{{'Submit a Free Ad'|translate}}" class="textb">{{'Post a free ad now'|translate}} <i class="fa fa-angle-right"></i></a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: ARE YOU LOOKING SECTION -->
+    <!-- BEGIN: TRUSTED SELLER SECTION -->
+    <div class="trust-sell">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-3">
+                    <ul class="media">
+                        <li class="media-left">
+                            <div class="img-wraper"> <img src="/images/blue-trusted-seller.png" alt="[Image:Trusted Seller]" title="{{'Trusted Seller'|translate}}"> </div>
+                        </li>
+                        <li class="media-body">
+                            <h3>{{vm.stats.sellers}}</h3>
+                            <p>{{'Trusted Seller'|translate}}</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <ul class="media">
+                        <li class="media-left">
+                            <div class="img-wraper"> <img src="/images/blue-categaries.png" alt="[Image:Categories]" title="{{'Categories'|translate}}" class="img-responsive"> </div>
+                        </li>
+                        <li class="media-body">
+                            <h3>{{vm.stats.categories}}</h3>
+                            <p>{{'Categories'|translate}}</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <ul class="media">
+                        <li class="media-left">
+                            <div class="img-wraper"> <img src="/images/blue-location.png" alt="[Image:Locations]" title="{{'Locations'|translate}}" class="img-responsive"> </div>
+                        </li>
+                        <li class="media-body">
+                            <h3>{{vm.stats.locations}}</h3>
+                            <p>{{'Locations'|translate}}</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <ul class="media">
+                        <li class="media-left">
+                            <div class="img-wraper"> <img src="/images/ads.png" alt="[Image:Ads]" title="{{'Ads'|translate}}" class="img-responsive"> </div>
+                        </li>
+                        <li class="media-body">
+                            <h3>{{vm.stats.ads}}</h3>
+                            <p>{{'Ads'|translate}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: TRUSTED SELLER SECTION -->
+    <!-- BEGIN: GET IN TOUCH SECTION -->
+    <div class="get-touch text-center">
+        <div class="container">
+            <h2> {{'If You Have Any Questions, Comments or Concerns,'|translate}} <span class="show">{{'Please Call The Classified Advertising Department at +91 044 4010 1707'|translate}}</span> </h2>
+            <div class="get-btun-block"> <a href="contact" title='{{"Call Now or Get in Touch"|translate}}' class="btn">{{'Call Now or Get in touch with us'|translate}}</a> </div>
+        </div>
+    </div>
+    <!-- END: GET IN TOUCH SECTION -->
+</div>
+<!-- END: MAIN -->

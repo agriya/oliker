@@ -1,0 +1,4 @@
+<a href="" class="dropdown-toggle" data-toggle="dropdown" title="Select Language"> <span id="search-concept3">{{currentLocaleDisplayName ? currentLocaleDisplayName : localesDisplayNames[1]}}</span> <i class="fa fa-angle-down"></i> </a>
+<ul class="dropdown-menu" role="menu">
+    <li class="cur" ng-repeat="language in localesDisplayNames"><a ng-click="changeLanguage(language)">{{language}}</a></li>
+</ul>

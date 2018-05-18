@@ -1,0 +1,89 @@
+<!-- BEGIN: MAIN -->
+<div class="main">
+    <!-- BEGIN: GREAT PRICES SECTION -->
+    <section class="form-page-blk">
+        <div class="container">
+            <div class="breadcrumb-block">
+                <ol class="breadcrumb no-mar">
+                    <li class="breadcrumb-item">
+                        <a href="/app" title='{{"Home"|translate}}'><img src="/images/bread-home.png" alt="[Image:Home]"></a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="my_ads" title='{{"My Ads"|translate}}'>{{'My Ads'|translate}}</a></li>
+                    <li class="breadcrumb-item" title="{{vm.ad.title}}">{{vm.ad.title}}</li>
+                </ol>
+            </div>
+            <div class="row" ng-controller="AdEditController as vm">
+                <div class="col-md-5 col-sm-6">
+                    <h3 class="h4  font-wei600">{{'Edit Ad'|translate}}</h3>
+                    <form class="form-horizontal form-content" name="vm.EditForm" ng-submit="vm.adUpdate()">
+                        <div class="form-group"> <label for="Title">{{'Title'|translate}}</label><span class="text-danger">&nbsp;*</span></label> <input type="text" class="form-control" ng-model="vm.ad.title" id="Title" placeholder='{{"Title"|translate}}'> </div>
+                        <div class="form-group">
+                        <label for="Description"> {{'Description'|translate}}</label><span class="text-danger">&nbsp;*</span></label> <textarea class="form-control txt-area" id="Description" rows="6" placeholder='{{"Short Description"|translate}}' ng-model="vm.ad.description"></textarea>                            </div>
+                        <div class="form-group"> <label for="Category">{{'Category'|translate}}</label><span class="text-danger">&nbsp;*</span></label>
+                            <!--<select class="form-control" ng-model="category" ng-click="selectcategory(category)" id="category" ng-options="category.name for category in vm.categories">                            --><a href="" ng-click="vm.open();vm.category_error=''"><span ng-if="vm.category_chosen==='' ||vm.category_chosen === null">Please Select Category</span>
+                             <span ng-if="vm.category_chosen !=='' && vm.category_chosen !== null">{{vm.category_chosen.name}}</span>
+                             </a><br> <span class="text-danger">{{vm.category_error}}</span> </select>
+                        </div>
+                        <div ng-model="vm.input" fb-form="default" fb-default="vm.defaultValue"></div>
+                        <div class="form-group"> <label for="AdvertiserType">{{'Advertiser Type'|translate}}</label><span class="text-danger">&nbsp;*</span></label> <select class="form-control" id="AdvertiserType" name="AdvertiserType" ng-model="vm.ad.advertiser_type_id">
+                               <option value="">{{'Please Select Advertiser Type'|translate}}</option>
+                            <option ng-selected="vm.ad.advertiser_type_id == advertiser_type.id" ng-repeat="advertiser_type in vm.advertiser_types" ng-value="advertiser_type.id">{{advertiser_type.name}}</option></select> </div>
+                        <div class="form-group">
+                        <label for="Price">{{'Price'|translate}}</label> <span class="text-danger">&nbsp;*</span></label> <input type="text" class="form-control" id="Price" ng-model="vm.ad.price" placeholder='{{"Price"|translate}}'> </div>
+                        <div class="form-group">
+                            <div class="checkbox"> <label for="Negotiable">
+                                    <input type="checkbox" ng-model="vm.ad.is_negotiable" id="Negotiable">
+                                    <span>{{'Negotiable'|translate}}</span>
+                                </label> </div>
+                            </li>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox"> <label for="AnExchangeItem">
+                                    <input type="checkbox" ng-model="vm.ad.is_an_exchange_item" id="AnExchangeItem">
+                                    <span>{{'An Exchange Item'|translate}}?</span>
+                                </label> </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox"> <label for="send_email_when_user_contact">
+                                        <input type="checkbox" ng-model="vm.ad.is_send_email_when_user_contact" id="send_email_when_user_contact">
+                                        <span>{{'Send Email When User Contact'|translate}}?</span>
+                                    </label> </div>
+                        </div>
+                        <div class="form-group"> <label for="Advertiser Name">{{'Advertiser Name'|translate}}</label><span class="text-danger">&nbsp;*</span></label> <input type="text" class="form-control" id="AdvertiserName" placeholder='{{"Advertiser Name"|translate}}' ng-model="vm.ad.advertiser_name">                            </div>
+                        <div class="form-group"> <label for="PhoneNumber">{{'Phone Number'|translate}}</label><span class="text-danger">&nbsp;*</span></label> <input type="text" class="form-control" id="PhoneNumber" placeholder='{{"Phone Number"|translate}}' ng-model="vm.ad.phone_number">                            </div>
+                        <div class="form-group"> <label for="location">{{'Location'|translate}}</label> <span class="text-danger">&nbsp;*</span></label> <input class="form-control" id="location" g-places-autocomplete force-selection="true" ng-model="vm.place" placeholder="{{'Enter Your Location or Area'|translate}}"
+                            /> </div>
+                        <div class="form-group">
+                            <div class="btn btn-default file-upload" ngf-select="vm.uploadFiles($files)" multiple="multiple"> <span class="font-wei500 text-16"><i class="fa fa-upload fa-fw"></i>{{'Upload'|translate}}</span> </div>
+                        </div>
+                        <div class="form-group">
+                            <ul class="list-inline">
+                                <li ng-repeat="ad_image in vm.ad_images track by $index">
+                                    <div class="img-upload">
+                                        <div class="img-iner"> <img ng-src="{{ad_image.name}}" alt="[Image: Ad]" height="70" width="100" class="thumb"> </div> <i class="fa fa-times" ng-click="vm.removeAdImage($index,ad_image.id)"></i>
+                                        <div class="img-name"> </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <ul class="list-unstyled">
+                                <li ng-repeat="images in vm.ad_image_files track by $index">
+                                    <div class="img-upload">
+                                        <div class="img-iner"> <img ngf-src="images" height="70" width="100" class="thumb"> </div> <i class="fa fa-times" ng-click="vm.removeImage($index)"></i>
+                                        <div class="img-name"> {{images.name}} </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="form-group"> 
+                                <button type="submit" class="btn btn-primary text-uppercase">
+                                    <i class="fa fa-check" aria-hidden="true"></i> {{'Save'|translate}}
+                                </button> 
+                            </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+    </section>

@@ -1,0 +1,81 @@
+<!-- BEGIN: HEADER -->
+<header class="oliker-header">
+    <nav class="navbar">
+        <div class="custom-contain-fluid">
+            <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                <a href="/app/" title='{{settings.SITE_NAME}}' class="navbar-brand"> <img src="/images/logo.png" alt="[Image:{{settings.SITE_NAME}}]" title='{{settings.SITE_NAME}}' class="img-responsive"> <span class="text-center"> {{'Best Top Classifieds Scripts'|translate}}</span> </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="header-menu clearfix">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="f-search">
+                            <ui-select class="ct-search" ng-model="mainVm.city_name.selected" title='{{"Select City"|translate}}' on-select="mainVm.selectCity($item)">
+                                <ui-select-match placeholder="{{'Select City'|translate}}">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices position="down" repeat="city in mainVm.cities track by $index" refresh="mainVm.getCityName($select.search)" refresh-delay="0">
+                                    <div class="sl-name" ng-bind-html="city.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </li>
+                        <li class="s-search">
+                            <form>
+                                <div class="visible-sm visible-md serch-sm"> <i class="fa fa-search"></i> </div>
+                                <div class="serch-group-sm serch-box">
+                                    <div class="input-group head-search-group">
+                                        <category-select callback="mainVm.setCategory($value)"></category-select>
+                                        <div class="form-blks"> <input type="text" class="form-control head-search-ip" name="x" placeholder="{{'What are you searching for?'|translate}}" ng-model="adkeyWord"> <i class="fa fa-search" aria-hidden="true"></i> </div> <span class="input-group-btn">
+                                                    <button class="btn btn-primary no-mar head-search-btun" type="button" title='{{"Search Ads"|translate}}' ng-click="mainVm.getAds(adkeyWord)">{{'Search'|translate}}</button>
+                                                </span> </div>
+                                </div>
+                            </form>
+                        </li>
+                        <li ng-if="!mainVm.isAuth"> <a class="btn btn-danger head-sub-btun" title='{{"Submit a Free Ad"|translate}}' ng-click="mainVm.openLoginModal('login')">{{'Submit a Free Ad'|translate}}</a></li>
+                        <li ng-if="mainVm.isAuth"> <a class="btn btn-danger head-sub-btun" href="ads/add" title='{{"Submit a Free Ad"|translate}}'>{{'Submit a Free Ad'|translate}}</a></li>
+                        <li ng-translate-language-select class="language"></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right no-mar">
+                        <li ng-show="!mainVm.isAuth">
+                            <a href="" class="signin-link" title='{{"Sign In"|translate}}' ng-click="mainVm.openLoginModal('login')"> <span></span> <span id="search-concept4">{{'Sign in'|translate}}</span> </a>
+                        </li>
+                        <li ng-show="!mainVm.isAuth">
+                            <a href="" class="signup-link" title='{{"Sign Up"|translate}}' ng-click="mainVm.openLoginModal('Register')"> <span>/</span><span id="search-concept5">{{'Sign Up'|translate}}</span> <i class="fa fa-angle-down"></i> </a>
+                        </li>
+                        <li ng-show="mainVm.isAuth">
+                            <a href="" data-toggle="dropdown" class="dropdown-toggle"> <span class="pull-left"> 
+                                 <img ng-if="user.role_id !== 1" ng-src="{{mainVm.header_avatar_url}}" width="30" height="30" class="img-circle" alt="[Image: UserAvatar]" title="{{user.username}}"></span>
+                                 <img ng-if="user.role_id === 1" src="/images/default-user.png" width="30" height="30" class="img-circle" title="{{user.username}}"></span>
+                                 <span class="caret"></span> </a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li> <a href="users/settings" title='{{"My Account"|translate}}'>
+                                    {{'My Account'|translate}}
+                                </a> </li>
+                                <li ng-show="user.role_id === 1"> <a href="{{mainVm.site_url}}" title='{{"Admin Dashboard"|translate}}' target="_blank">
+                                    {{'Admin Dashboard'|translate}}
+                                </a> </li>
+                                <li> <a href="my_ads" title='{{"My Ads"|translate}}'>
+                                    {{'My Ads'|translate}}
+                                </a> </li>
+                                <li> <a href="messages/inbox" title='{{"Messages"|translate}}'>
+                                    {{'Messages'|translate}}
+                                </a> </li>
+                                <li> <a href="user_ad_packages" title='{{"Packages"|translate}}'>
+                                    {{'Packages'|translate}}
+                                </a> </li>
+                                <li class="divider"></li>
+                                <li> <a href="users/logout" title='{{"Log out"|translate}}'>
+                                    {{'Log out'|translate}}
+                                </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+</header>
+<!-- END: HEADER -->

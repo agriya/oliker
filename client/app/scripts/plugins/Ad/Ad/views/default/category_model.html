@@ -1,0 +1,18 @@
+<div class="modal-header catergory-box"> <button type="button" class="close" ng-click="vm.cancel()" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h3 class="modal-title" id="modal-title"> {{'Choose the Category'|translate}} : {{vm.selected_category.name}} </h3>
+</div>
+<div class="category-modal" id="modal-body">
+    <div class="clearfix">
+        <div class="model-content" ng-repeat="(main_key,category) in vm.group_categories track by $index">
+            <ul class="list-unstyled catergory-list">
+                <li class="" ng-repeat="(key, cat) in category"> <a href="" ng-click="vm.setCategies(main_key, cat.id , key,cat)">
+                    {{cat.name}}
+                        <i ng-if="cat.subcategories.length" class="fa fa-angle-double-right fa-fw"></i>
+                    </a> </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div></div>

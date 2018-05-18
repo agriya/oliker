@@ -1,0 +1,28 @@
+<div class="explore-categ-sec">
+    <div class="container">
+        <div class="explore-wrapper" ng-init="limit = 3">
+            <div class="explore-block" ng-repeat="category in vm.categories|limitTo :limit as results">
+                <ul class="list-inline clearfix explore-head">
+                    <li class="pull-left">
+                        <h3>{{category.name}}</h3>
+                    </li>
+                    <li class="pull-right"> <a href="category/{{category.id}}/{{category.slug}}" title='{{"Explore"|translate}}' class="btn">{{'Explore'|translate}} 
+                                    	<i class="fa fa-angle-right"></i>
+                                    </a> </li>
+                </ul>
+                <ul class="list-inline text-center explore-content">
+                    <li ng-repeat="subcategory in category.subcategories |limitTo :5">
+                        <div>
+                            <a href="category/{{subcategory.id}}/{{subcategory.slug}}" title="{{subcategory.name}}" class="show"> <img ng-src="{{subcategory.image_name}}" alt="[Image: Subcategory]" title="{{subcategory.name}}" class="img-responsive"> </a>
+                            <h4 title="{{subcategory.name}}">{{subcategory.name}}</h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center h2 no-mar explore-icon">
+            <a href="" ng-hide="limit === vm.categories.length" title='{{"View More Categories"|translate}}' ng-click="limit=vm.categories.length" class="text-info show"> <i class="fa fa-angle-double-down" aria-hidden="true"></i> </a>
+            <a href="" ng-show="limit === vm.categories.length" title='{{"View Less  Categories"|translate}}' ng-click="limit = 3" class="text-info show"> <i class="fa fa-angle-double-up" aria-hidden="true"></i> </a>
+        </div>
+    </div>
+</div>

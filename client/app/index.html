@@ -1,0 +1,236 @@
+<!doctype html>
+<html ng-app="olikerApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+    <title ng-bind="header"></title>
+    <meta name="description" content="{{settings.META_KEYWORDS}}" />
+    <meta name="keywords" content="{{settings.META_DESCRIPTION}}" />
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png" />
+    <link rel="icon" type="/images/svg+xml" href="images/logo.svg" />
+    <!-- Font Awesome -->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="styles/animate-loader.css">
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/angular-growl-v2/build/angular-growl.css" />
+    <link rel="stylesheet" href="../bower_components/angular-google-places-autocomplete/src/autocomplete.css" />
+    <link rel="stylesheet" href="../bower_components/angular-loading-bar/build/loading-bar.min.css">
+    <link rel="stylesheet" href="../bower_components/angular-ui-select/dist/select.css" />
+    <link rel="stylesheet" href="../bower_components/angular-form-builder/dist/angular-form-builder.css" />
+    <link rel="stylesheet" type="text/css" href="../bower_components/flexslider/flexslider.css">
+    <link rel="stylesheet" href="../bower_components/sweetalert/dist/sweetalert.css" />
+    <link rel="stylesheet" href="../bower_components/angularjs-slider/dist/rzslider.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="styles/loader.css">
+    <!-- endbuild -->
+    <!-- Bootstrap -->
+</head>
+
+<body class="site-loading">
+    <div class="loader">
+        <div class="wBall" id="wBall_1">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall" id="wBall_2">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall" id="wBall_3">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall" id="wBall_4">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall" id="wBall_5">
+            <div class="wInnerBall"></div>
+        </div>
+    </div>
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Add your site or application content here -->
+    <div ng-controller="MainController as mainVm">
+        <div growl limit-messages="1"></div>
+        <div ng-include="'views/header.html'"></div>
+        <div ui-view autoscroll="true"></div>
+        <div ng-include="'views/footer.html'"></div>
+    </div>
+    <div google-analytics></div>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script src="//maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBvXPoR4YXSSib7aucIvrYHrmMknzMEaHM"></script>
+    <script src="//www.google.com/recaptcha/api.js?render=explicit&onload=vcRecaptchaApiLoaded" async defer></script>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-resource/angular-resource.js"></script>
+    <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../bower_components/satellizer/satellizer.js"></script>
+    <script src="../bower_components/angular-md5/angular-md5.js"></script>
+    <script src="../bower_components/angular-growl-v2/build/angular-growl.js"></script>
+    <script src="../bower_components/angular-google-places-autocomplete/src/autocomplete.js"></script>
+    <script src="../bower_components/angular-filter/dist/angular-filter.min.js"></script>
+    <script src="../bower_components/angular-http-auth/src/http-auth-interceptor.js"></script>
+    <script src="../bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
+    <script src="../bower_components/angular-recaptcha/release/angular-recaptcha.js"></script>
+    <script src="../bower_components/angulartics/dist/angulartics.min.js"></script>
+    <script src="../bower_components/angulartics-google-analytics/dist/angulartics-ga.min.js"></script>
+    <script src="../bower_components/angular-translate/angular-translate.min.js"></script>
+    <script src="../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+    <script src="../bower_components/angular-dynamic-locale/tmhDynamicLocale.min.js"></script>
+    <script src="../bower_components/angular-translate-handler-log/angular-translate-handler-log.min.js"></script>
+    <script src="../bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
+    <script src="../bower_components/angular-translate-storage-local/angular-translate-storage-local.min.js"></script>
+    <script src="../bower_components/ngmap/build/scripts/ng-map.min.js?key=AIzaSyBvXPoR4YXSSib7aucIvrYHrmMknzMEaHM"></script>
+    <script src="../bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+    <script src="../bower_components/angular-payment/dist/angular-payment-tpls-0.3.0.js"></script>
+    <script src="../bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="../bower_components/angular-form-builder/dist/angular-form-builder.js"></script>
+    <script src="../bower_components/angular-form-builder/dist/angular-form-builder-components.js"></script>
+    <script src="../bower_components/angular-validator/dist/angular-validator.min.js"></script>
+    <script src="../bower_components/angular-validator/dist/angular-validator-rules.min.js"></script>
+    <script src="../bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="../bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
+    <script src="../bower_components/angular-moment/angular-moment.js"></script>
+    <script src="../bower_components/angular-swipe/dist/angular-swipe.js"></script>
+    <script src="../bower_components/angularjs-slider/dist/rzslider.min.js"></script>
+    <script src="../bower_components/flexslider/jquery.flexslider.js"></script>
+    <script src="../bower_components/angular-flexslider/angular-flexslider.js"></script>
+    <script src="../bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../bower_components/angular-sweetalert/SweetAlert.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/user.js"></script>
+    <script src="scripts/services/city.js"></script>
+    <script src="scripts/services/attachment.js"></script>
+    <script src="scripts/services/country.js"></script>
+    <script src="scripts/services/contact.js"></script>
+    <script src="scripts/services/provider.js"></script>
+    <script src="scripts/services/page.js"></script>
+    <script src="scripts/services/stats.js"></script>
+    <script src="scripts/services/language.js"></script>
+    <script src="scripts/services/translate.js"></script>
+    <script src="scripts/services/payment_gateway.js"></script>
+    <script src="scripts/services/refresh_token.js"></script>
+    <script src="scripts/services/token_service.js"></script>
+    <script src="scripts/services/oauth_token_injector.js"></script>
+    <script src="scripts/services/growl.js"></script>
+    <script src="scripts/services/user_notification.js"></script>
+    <script src="scripts/filters/date_format.js"></script>
+    <script src="scripts/directives/google_analytics.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/home.js"></script>
+    <script src="scripts/controllers/users_settings.js"></script>
+    <script src="scripts/controllers/users_change_password.js"></script>
+    <script src="scripts/controllers/contact.js"></script>
+    <script src="scripts/controllers/users_register.js"></script>
+    <script src="scripts/controllers/users_login.js"></script>
+    <script src="scripts/controllers/users_logout.js"></script>
+    <script src="scripts/controllers/users_forgot_password.js"></script>
+    <script src="scripts/controllers/page_view.js"></script>
+    <script src="scripts/controllers/user_activation.js"></script>
+    <script src="scripts/controllers/translations.js"></script>
+    <script src="scripts/controllers/user_notification.js"></script>
+    <script src="scripts/services/attachment.js"></script>
+    <script src="scripts/directives/pages.js"></script>
+    <script src="scripts/directives/languages.js"></script>
+    <script src="scripts/directives/google_recaptcha.js"></script>
+    <script src="scripts/controllers/transactions.js"></script>
+    <script src="scripts/services/transaction.js"></script>
+    <script src="scripts/services/scrollpage_top.js"></script>
+    <script src="scripts/services/settings.js"></script>
+    <!-- endbuild -->
+    <!-- build:js scripts/plugins.js -->
+    <!-- Ad -->
+    <script src="scripts/plugins/Ad/Ad/app.js"></script>
+    <script src="scripts/plugins/Ad/Ad/controllers/ads.js"></script>
+    <script src="scripts/plugins/Ad/Ad/controllers/ad_view.js"></script>
+    <script src="scripts/plugins/Ad/Ad/controllers/my_ads.js"></script>
+    <script src="scripts/plugins/Ad/Ad/controllers/ad_add.js"></script>
+    <script src="scripts/plugins/Ad/Ad/controllers/ad_edit.js"></script>
+    <script src="scripts/plugins/Ad/Ad/controllers/category_modal.js"></script>
+    <script src="scripts/plugins/Ad/Ad/services/ad_advertiser_type.js"></script>
+    <script src="scripts/plugins/Ad/Ad/services/ad.js"></script>
+    <script src="scripts/plugins/Ad/Ad/controllers/ad_search.js"></script>
+    <script src="scripts/plugins/Ad/Ad/controllers/trending_ads.js"></script>
+    <script src="scripts/plugins/Ad/Ad/controllers/category_list.js"></script>
+    <script src="scripts/plugins/Ad/Ad/controllers/category.js"></script>
+    <script src="scripts/plugins/Ad/Ad/controllers/category_select.js"></script>
+    <script src="scripts/plugins/Ad/Ad/directives/trending_ads.js"></script>
+    <script src="scripts/plugins/Ad/Ad/directives/categories.js"></script>
+    <script src="scripts/plugins/Ad/Ad/services/category.js"></script>
+    <script src="scripts/plugins/Ad/Ad/services/ad_search.js"></script>
+    <!-- Message -->
+    <script src="scripts/plugins/Common/Message/app.js"></script>
+    <script src="scripts/plugins/Common/Message/controllers/messages.js"></script>
+    <script src="scripts/plugins/Common/Message/controllers/message_view.js"></script>
+    <script src="scripts/plugins/Common/Message/controllers/message_modal.js"></script>
+    <script src="scripts/plugins/Common/Message/services/message.js"></script>
+    <script src="scripts/plugins/Common/Message/directives/message.js"></script>
+    <!-- Report -->
+    <script src="scripts/plugins/Ad/AdReport/app.js"></script>
+    <script src="scripts/plugins/Ad/AdReport/controllers/report.js"></script>
+    <script src="scripts/plugins/Ad/AdReport/services/ad_report.js"></script>
+    <script src="scripts/plugins/Ad/AdReport/services/ad_report_type.js"></script>
+    <script src="scripts/plugins/Ad/AdReport/directives/ad_report.js"></script>
+    <!-- Favorite -->
+    <script src="scripts/plugins/Ad/AdFavorite/app.js"></script>
+    <script src="scripts/plugins/Ad/AdFavorite/controllers/ad_favorites.js"></script>
+    <script src="scripts/plugins/Ad/AdFavorite/controllers/ads_favorite.js"></script>
+    <script src="scripts/plugins/Ad/AdFavorite/services/ad_favorite.js"></script>
+    <script src="scripts/plugins/Ad/AdFavorite/directives/favorite.js"></script>
+    <!-- Wallet -->
+    <script src="scripts/plugins/Common/Wallet/app.js"></script>
+    <script src="scripts/plugins/Common/Wallet/controllers/wallet.js"></script>
+    <script src="scripts/plugins/Common/Wallet/services/wallet.js"></script>
+    <!-- Withdrawal -->
+    <script src="scripts/plugins/Common/Withdrawal/app.js"></script>
+    <script src="scripts/plugins/Common/Withdrawal/controllers/cash_withdrawals.js"></script>
+    <script src="scripts/plugins/Common/Withdrawal/services/cash_withdrawals.js"></script>
+    <script src="scripts/plugins/Common/Withdrawal/controllers/money_transfer_account.js"></script>
+    <script src="scripts/plugins/Common/Withdrawal/services/money_transfer_account.js"></script>
+    <!-- AdPackage -->
+    <script src="scripts/plugins/Ad/AdPackage/app.js"></script>
+    <script src="scripts/plugins/Ad/AdPackage/controllers/ad_subscription_packages.js"></script>
+    <script src="scripts/plugins/Ad/AdPackage/controllers/user_ad_packages.js"></script>
+    <script src="scripts/plugins/Ad/AdPackage/services/ad_subscription_package.js"></script>
+    <script src="scripts/plugins/Ad/AdPackage/services/ad_package.js"></script>
+    <!-- AdExtraday -->
+    <script src="scripts/plugins/Ad/AdExtra/app.js"></script>
+    <script src="scripts/plugins/Ad/AdExtra/controllers/ads_payment.js"></script>
+    <script src="scripts/plugins/Ad/AdExtra/services/ad_extra_day.js"></script>
+    <!-- ZazPay -->
+    <script src="scripts/plugins/Common/ZazPay/app.js"></script>
+    <!---Paypal--->
+    <script src="scripts/plugins/Common/Paypal/app.js"></script>
+    <script src="scripts/plugins/Common/Paypal/controllers/add_credit_card.js"></script>
+    <script src="scripts/plugins/Common/Paypal/services/credit_card.js"></script>
+    <!-- Plugin (must be at last) -->
+    <script src="scripts/plugins.cache.js"></script>
+    <!-- banner-->
+    <script src="scripts/controllers/banner.js"></script>
+    <script src="scripts/directives/banner.js"></script>
+    <!-- endbuild -->
+</body>
+
+</html>

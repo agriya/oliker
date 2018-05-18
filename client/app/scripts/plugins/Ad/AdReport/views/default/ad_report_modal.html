@@ -1,0 +1,12 @@
+<div class="send-report-blk">
+    <div class="modal-header"> <button type="button" class="close" ng-click="vm.cancel()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="modal-title">{{'Send Your Report'|translate}}</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <form class="form-horizontal" name="vm.reportForm" ng-submit="vm.adReport(reportForm.$valid)">
+            <div class="form-group"> <label for="Report">{{'Ad Report Type'|translate}}</label> <select class="form-control" name="reports" ng-model="vm.report.ad_report_type_id" required>
+                                <option value="">{{'Please Select Report'|translate}}</option>
+                                <option  ng-repeat="ad_report in vm.ad_reports" ng-value="ad_report.id">{{ad_report.name}}</option></select> </div>
+            <div class="form-group"> <label for="Message"> {{'Message'|translate}}</label><textarea class="form-control txt-area" id="Message" rows="6" placeholder="Message" ng-model="vm.report.message" required></textarea> </div> <button type="submit" class="btn btn-primary">{{'Submit'|translate}}</button>            </form>
+    </div>
+</div>

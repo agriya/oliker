@@ -1,0 +1,9 @@
+{
+	"name": "Ad/AdFavorite", 
+	"class": "fa fa-2x fa-heart-o",
+	"description": "AdFavorite",
+	"dependencies": "Ad",
+	"module_id": "",
+	"module_hash": "",
+	"display_order": "4"
+}

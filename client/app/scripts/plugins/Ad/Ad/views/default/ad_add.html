@@ -1,0 +1,128 @@
+<div class="main">
+    <!-- BEGIN: GREAT PRICES SECTION -->
+    <section class="form-page-blk">
+        <div class="container" ng-controller="AdController as vm">
+            <div class="breadcrumb-block">
+                <div class="">
+                    <ol class="breadcrumb no-mar">
+                        <li class="breadcrumb-item">
+                            <a href="/app/" title='{{"Home"|translate}}'><img src="/images/bread-home.png" alt="[Image:Home]"></a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="my_ads" title='{{"My Ads"|translate}}'>{{'My Ads'|translate}}</a></li>
+                    </ol>
+                </div>
+                <form class="row form-horizontal form-content" role="form" name="AddAdForm" ng-submit="vm.adsSave(AddAdForm)">
+                    <div class="col-md-9 col-sm-8">
+                        <h3 class="h4  font-wei600">{{'Create Ad'|translate}}</h3>
+                        <div class="form-group"> <label for="Title">{{'Title'|translate}}</label> <span class="text-danger">&nbsp;*</span><input type="text" class="form-control" ng-model="vm.ad.title" id="Title" placeholder='{{"Title"|translate}}' required> </div>
+                        <div class="form-group">
+                        <label for="Description"> {{'Description'|translate}}</label><span class="text-danger">&nbsp;*</span> <textarea class="form-control txt-area" id="Description" rows="6" placeholder='{{"Short Description"|translate}}' ng-model="vm.ad.description"
+                                required></textarea> </div>
+                        <div class="form-group"> <label for="Category">{{'Category'|translate}}</label> <span class="text-danger">&nbsp;*</span> <a href="" ng-click="vm.open();vm.category_error=''"><span ng-if="vm.category_chosen==='' ||vm.category_chosen === null">Please Select Category</span>
+                                <span ng-if="vm.category_chosen !=='' && vm.category_chosen !== null">{{vm.category_chosen.name}}</span>
+                                </a><br> <span class="text-danger">{{vm.category_error}}</span>
+                            <!--<select class="form-control" ng-model="vm.category" ng-click="vm.selectCategory(vm.category)" ng-options="vm.category.name for category in vm.categories">                            
+                         </select>--></div>
+                        <div ng-model="vm.input" fb-form="default" fb-default="defaultValue"></div>
+                        <div class="form-group"> <label for="Advertiser Type">{{'Advertiser Type'|translate}}</label><span class="text-danger">&nbsp;*</span> <select class="form-control" id="Advertiser Type" name="category" ng-model="vm.ad.advertiser_type_id" required>
+                               <option value="">{{'Please Select'|translate}}</option>
+                            <option ng-selected="vm.ad.advertiser_type_id == advertiser_type.id" ng-repeat="advertiser_type in vm.advertiser_types" ng-value="advertiser_type.id">{{advertiser_type.name}}</option></select> </div>
+                        <div class="form-group">
+                        <label for="price">{{'Price'|translate}}</label> <span class="text-danger">&nbsp;*</span> <input type="number" class="form-control" id="price" ng-model="vm.ad.price" placeholder='{{"Price"|translate}}' required> </div>
+                        <div class="form-group">
+                            <div class="checkbox"> <label for="Negotiable">
+                                    <input type="checkbox" ng-model="vm.ad.is_negotiable" id="Negotiable">
+                                    <span>{{'Negotiable'|translate}}?</span>
+                                </label> </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox"> <label for="An Exchange Item">
+                                    <input type="checkbox" ng-model="vm.ad.is_an_exchange_item" id="An Exchange Item">
+                                    <span>{{'An Exchange Item'|translate}}?</span>
+                                </label> </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox"> <label for="'Send Email When User Contact">
+                                        <input type="checkbox" ng-model="vm.ad.is_send_email_when_user_contact" id="'Send Email When User Contact">
+                                        <span>{{'Send Email When User Contact'|translate}}?</span>
+                                    </label> </div>
+                        </div>
+                        <div class="form-group"> <label for="Advertiser Name">{{'Advertiser Name'|translate}}</label><span class="text-danger">&nbsp;*</span> <input type="text" class="form-control" id="Advertiser Name" placeholder='{{"Advertiser Name"|translate}}' ng-model="vm.ad.advertiser_name"
+                                required> </div>
+                        <div class="form-group"> <label for="PhoneNumber">{{'Phone Number'|translate}}</label><span class="text-danger">&nbsp;*</span> <input type="number" class="form-control" id="PhoneNumber" placeholder='{{"Phone Number"|translate}}' ng-model="vm.ad.phone_number"
+                                required> </div>
+                        <div class="form-group"> <label for="location">{{'Location'|translate}}</label><span class="text-danger">&nbsp;*</span> <input class="form-control" id="location" g-places-autocomplete force-selection="true" ng-model="vm.place" placeholder="{{'Enter Your Location or Area'|translate}}"
+                                required/> </div>
+                        <div class="form-group">
+                            <div class="btn btn-default file-upload" ngf-select="vm.uploadFiles($files)" multiple="multiple"> <span class="font-wei500 text-16"><i class="fa fa-upload fa-fw"></i>{{'Upload'|translate}}</span> </div>
+                        </div>
+                        <div class="form-group">
+                            <ul class="list-unstyled">
+                                <li ng-repeat="image in vm.ad_image_files track by $index">
+                                    <div class="img-upload">
+                                        <div class="img-iner"> <img ngf-src="image" height="70" width="100" class="thumb"> </div>
+                                        <div class="close-syb"> <i class="fa fa-times" ng-click="vm.removeImage($index)"></i> </div>
+                                        <div class="img-name"> {{image.name}} </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!--<ul>
+                                <li ng-repeat="image in vm.ad_image_files track by $index"> <img ngf-src="image" height="70" width="100" class="thumb"><i class="fa fa-times" ng-click="vm.removeImage($index)"></i>{{image.name}} </li>
+                            </ul>-->
+                        </div>
+                        <div class="form-group" ng-if="vm.is_show_extrday === true">
+                            <h4 class="ext-heading"> {{'Extra Days'|translate}} <span class="pull-right points"> {{'Available Points'|translate}} :{{vm.user_available_points}}</span></h4>
+                            <div class="available-points">
+                                <ul class="list-inline extra-days clearfix">
+                                    <li ng-repeat="Category_extrday in vm.category_extrdays" ng-class="{'featrd-yellow':$index%3==0,'featrd-yellow featrd-green':$index%3==1,'featrd-yellow featrd-blue':$index%3==2}">
+                                        <div class="inner-featurd">
+                                            <div class="featrd-pos">
+                                                <h4> {{'Days'|translate}}:{{Category_extrday.days}} </h4>
+                                            </div>
+                                            <div class="featurd-text"> &nbsp;&nbsp;&nbsp;&nbsp;{{Category_extrday.ad_extra.name}} </div>
+                                        </div>
+                                        <div class="checkbox"> <label for="checkbox{{$index}}">
+                                            <input type="checkbox" id="checkbox{{$index}}" ng-click="vm.extraDaySave()" ng-model="vm.extra_day[Category_extrday.ad_extra_id]">
+                                            <span>
+                                                <i class="fa fa-inr" aria-hidden="true"></i>  {{'Amount'|translate}}:{{Category_extrday.amount}}
+                                            </span>                                                 
+                                        </label> </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h4 class="ext-heading">{{'Buy Discounted Packages For Post More Ads'|translate}}</h4>  
+                              <div class="clearfix">
+                                <a href="user_ad_packages?category_id={{vm.category.id}}" 
+                                    class="show packages-txt" title='{{"View More Packages"|translate}}'>
+                                     View More Packages <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
+                                </a>                                 
+                                </div>
+                            </div>
+                        <button
+                            type="submit" ng-hide="vm.categgory_select_btn === false" class="btn btn-primary text-uppercase"><span class=""> <i class="fa fa-check fa-fw" aria-hidden="true"></i> {{'Save'|translate}}</span></button> 
+                            <button type="submit" ng-hide="vm.extra_day_btn === true" ng-if="vm.free_ad_btn === true" class="btn btn-primary text-uppercase"><span class=""> <i class="fa fa-check fa-fw" aria-hidden="true"></i> {{'Save'|translate}}</span></button>                            </div>
+                    <div ng-if="vm.is_show_pay===true || vm.extra_day_btn === true" class="col-xs-12">
+                        <p> <strong>Ad Fee :{{vm.ad_fee}}</strong></p>
+                        <div class="panel payment-block space">
+                            <div class="panel clearfix space">
+                                <section class="table-blk table-add">
+                                    <div ng-include="'scripts/plugins/Common/Paypal/views/default/gateways_menu.html'"></div>
+                                </section>
+                                <!-- END: TABLE-BLK SECTION -->
+                                <div ng-if="vm.zazpay === true" class="well-sm">
+                                    <div class="row">
+                                        <div ng-include="'views/gateway.html'"></div>
+                                    </div>
+                                </div>
+                                <div ng-if="vm.paypal === true" class="well-sm">
+                                    <div class="row">
+                                        <div ng-include="'scripts/plugins/Common/Paypal/views/default/paypal.html'"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>

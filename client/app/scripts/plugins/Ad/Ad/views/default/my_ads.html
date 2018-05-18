@@ -1,0 +1,98 @@
+<div ng-controller="MyAdsListController as vm">
+    <!-- BEGIN:  TABLE-BLK SECTION -->
+    <section class="table-blk">
+        <div ng-include="'views/main_tab.html'"></div>
+    </section>
+    <!-- END: TABLE-BLK SECTION -->
+    <section class="table-content">
+        <div class="container">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="hom">
+                    <div class="thumbnail">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div ng-include="'views/menu_tab.html'"></div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div ng-include="'views/loader.html'"></div>
+                            <div role="tabpanel" class="tab-pane fade in active" ng-show="!vm.loader" id="home-acti">
+                                <div class="table-responsive" ng-show="vm.my_ads.length">
+                                    <table class="table table-striped list-group-item-text">
+                                        <thead>
+                                            <tr>
+                                                <th>{{'Created'| translate}}</th>
+                                                <th>{{'Title'| translate}}</th>
+                                                <th>{{'Image'|translate}}</th>
+                                                <th>{{'Category'| translate}}</th>
+                                                <th>{{'Price'| translate}}({{settings.CURRENCY_SYMBOL}})</th>
+                                                <th>{{'In Top?'|translate}}</th>
+                                                <th>{{'Top?'|translate}}</th>
+                                                <th>{{'Urgent?'|translate}}</th>
+                                                <th>{{'Highlight?'|translate}}</th>
+                                                <th>{{'Favorites'| translate}}</th>
+                                                <th>{{'Views'| translate}}</th>
+                                                <th>{{'Expired' |translate}}</th>
+                                                <th>{{'Active?'| translate}}</th>
+                                                <th>{{'Actions' | translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="my_ad in vm.my_ads" title="{{my_ad.title}}" class="cur">
+                                                <td>{{my_ad.created_at| amDateFormat:'LL'}}</td>
+                                                <td>
+                                                    <a href="ad/{{my_ad.id}}/{{my_ad.slug}}">
+                                                        <p class="truncate">{{my_ad.title}}</p>
+                                                    </a>
+                                                </td>
+                                                <td> <img ng-src="{{my_ad.image_name}}" alt="[Image: Ad]" title="{{my_ad.title}}" class="pull-left "></td>
+                                                <td>{{my_ad.category.name}}</td>
+                                                <td>{{my_ad.price}}</td>
+                                                <td> <i ng-show="my_ad.is_show_ad_in_top" class="fa fa-check icon-close  icon-check" aria-hidden="true"></i> <i ng-show="!my_ad.is_show_ad_in_top" class="fa fa fa-times icon-close" aria-hidden="true"></i></td>
+                                                <td> <i ng-show="my_ad.is_show_as_top_ads" class="fa fa-check icon-close  icon-check" aria-hidden="true"></i> <i ng-show="!my_ad.is_show_as_top_ads" class="fa fa-times icon-close" aria-hidden="true"></i></td>
+                                                <td> <i ng-show="my_ad.is_urgent" class="fa fa-check icon-close  icon-check" aria-hidden="true"></i> <i ng-show="!my_ad.is_urgent" class="fa fa-times icon-close" aria-hidden="true"></i></td>
+                                                <td> <i ng-show="my_ad.is_highlighted" class="fa fa-check icon-close  icon-check" aria-hidden="true"></i> <i ng-show="!my_ad.is_highlighted" class="fa fa-times icon-close" aria-hidden="true"></i></td>
+                                                <td>{{my_ad.ad_favorite_count}}</td>
+                                                <td>{{my_ad.ad_view_count}}</td>
+                                                <td>{{my_ad.ad_end_date}}</td>
+                                                <td> <i ng-show="my_ad.is_active" class="fa fa-check icon-close  icon-check" aria-hidden="true"></i> <i ng-show="!my_ad.is_active" class="fa fa-times icon-close" aria-hidden="true"></i> </td>
+                                                <td>
+                                                    <ul class="list-inline no-mar">
+                                                        <li><a href="ads/edit/{{my_ad.id}}" title="{{'Edit Ad'|translate}}"><i class=" fa fa-pencil-square-o text-center icon-edit icon-close" aria-hidden="true"></i></a></li>
+                                                        <li>
+                                                            <a href="ads/payment/{{my_ad.id}}" title="{{'Ad ExtraDays'|translate}}"> <i class="fa fa-money text-center icon-check icon-close" aria-hidden="true"></i></a>
+                                                        </li>
+                                                        <li><a href="" title="{{'Remove Ad'|translate}}" ng-click="vm.removeAd(my_ad.id,$index)"><i class="fa fa-times text-center icon-close" aria-hidden="true"></i></a></li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger mspace" ng-show="!vm.loader && !vm.my_ads.length">
+                                <p class="text-center">{{'No Ads Found'|translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- START: ACTION FREE SECTION -->
+    <section class="sec-action-blk">
+        <div class="container">
+            <div class="pull-right list-rgt">
+                <div class="row" ng-show="!vm.loader">
+                    <div class="col-md-12 text-center" ng-hide="(vm.my_ads.length < vm.items_per_page) && vm.current_page==1">
+                        <uib-pagination ng-hide="!vm.my_ads.length" previous-text="Previous" next-text="Next" total-items="vm.total_items" num-pages="vm.no_of_pages" ng-model="vm.current_page" max-size="vm.maxSize" class="pagination-sm" boundary-link-numbers="true"
+                            rotate="false" items-per-page="vm.items_per_page" ng-change="vm.paginate()"></uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- START: SUBMIT FREE SECTION -->
+    <div ng-if="!vm.loader" ng-include="'views/submit_free_ad.html'"></div>
+    <!-- END: SUBMIT FREE SECTION -->
+    <!--<div ng-include="'views/main_categories.html'"></div>--></div>

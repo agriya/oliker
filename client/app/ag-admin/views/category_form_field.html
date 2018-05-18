@@ -1,0 +1,28 @@
+<table class="table table-striped  table-hover table-bordered category-field">
+    <tbody>
+        <tr class="">
+            <th class="bold " width="20%">Name</th>
+            <th class="bold " width="20%">Label</th>
+            <th class="bold" width="20%">Input Type Name</th>
+            <th class="bold" width="10%">Info</th>
+            <th class="bold" width="10%">Required?</th>
+            <th class="bold center" width="20%">Display Name</th>
+            <th class="bold" width="10%">Display Order</th>
+            <th class="bold" width="20%">Depends On</th>
+            <th class="bold" width="20%">Depend Value</th>
+            <th class="bold" width="20%">Active?</th>
+        </tr>
+        <tr class="" ng-repeat="form_field in category.form_field">
+            <td class=" ">{{form_field.name}}</td>
+            <td class=" ">{{form_field.label}}</td>
+            <td class=" ">{{form_field.input_types.name}}</td>
+            <td class=" ">{{form_field.info}}</td>
+            <td class=" ">{{form_field.is_required}}</td>
+            <td class=" ">{{form_field.display_name}}</td>
+            <td class=" ">{{form_field.display_order}}</td>
+            <td class=" ">{{form_field.depends_on}}</td>
+            <td class=" ">{{form_field.depend_value}}</td>
+            <td class=" ">{{form_field.is_active}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,10 @@
+<div class="modal-header login-register-modal" ng-controller="MainController as mainVm"> <button type="button" class="close" ng-click="mainVm.cancel()">x</button> <br>
+    <uib-tabset active="vm.loginactive" justified="true">
+        <uib-tab index="0" heading="{{'Login'|translate}}" ng-click="mainVm.switch_tab('login')"> <br>
+            <div ng-if="vm.loginactive === 0" ng-include="'views/user_login.html'"></div>
+        </uib-tab>
+        <uib-tab index="1" heading="{{'Register'|translate}}" ng-click="mainVm.switch_tab('register')"> <br>
+            <div ng-include="'views/user_register.html'"></div>
+        </uib-tab>
+    </uib-tabset>
+</div>

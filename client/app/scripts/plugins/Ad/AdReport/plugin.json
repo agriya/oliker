@@ -1,0 +1,9 @@
+{
+	"name": "Ad/AdReport", 
+	"class": "fa fa-2x fa-pencil-square-o",
+	"description": "AdReport",
+	"dependencies": "Ad",
+	"module_id": "",
+	"module_hash": "",
+	"display_order": "5"
+}

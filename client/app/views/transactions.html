@@ -1,0 +1,79 @@
+<div ng-controller='TransactionsController as vm'>
+    <!-- BEGIN:  TABLE-BLK SECTION -->
+    <div ng-include="'views/main_tab.html'"></div>
+    <!-- END: TABLE-BLK SECTION -->
+    <section class="table-content">
+        <div class="container">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="hom">
+                    <div class="thumbnail">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div ng-include="'views/menu_tab.html'"></div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div ng-include="'views/loader.html'"></div>
+                            <div role="tabpanel" class="tab-pane fade in active" ng-show="!vm.loader" id="home-acti">
+                                <div class="notfications-content">
+                                    <h3 class="h4 ver-space15">{{'Transactions'|translate}}</h3>
+                                </div>
+                                <div class="table-responsive" ng-show="vm.transactionsList.length">
+                                    <table class="table table-striped list-group-item-text">
+                                        <thead>
+                                            <tr>
+                                                <th>{{'Created' |translate}}</th>
+                                                <th>{{'From'|translate}}</th>
+                                                <th>{{'To'|translate}}</th>
+                                                <th>{{'Description'|translate}}</th>
+                                                <th>{{'Amount' |translate}}({{settings.CURRENCY_SYMBOL}})</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="list in vm.transactionsList">
+                                                <td>{{list.created_at |amDateFormat:'LL'}}</td>
+                                                <td>{{list.user.username}}</td>
+                                                <td>{{list.to_user.username}}</td>
+                                                <td ng-if="list.type==='AmountAddedToWallet'">{{'Amount Added To Own Wallet'|translate}}</td>
+                                                <td ng-if="list.type==='AdPackageFee'">{{'Ad Package Order Placed'| translate}}</td>
+                                                <td ng-if="list.type==='WithdrawRequested'">{{'Cash Withdrawel Request From Your Account'| translate}}</td>
+                                                <td ng-if="list.type==='AdFeaturesUpdatedFee'">{{'Ad Features Purchased'| translate}}</td>
+                                                <td ng-if="list.type==='WithdrawRequestApproved'">{{'Cash Withdrawel Request Approved'| translate}}</td>
+                                                <td ng-if="list.type==='WithdrawRequestRejected'">{{'Cash Withdrawel Request Rejected'| translate}}</td>
+                                                <td>{{list.amount}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-heading">
+                            <div class="alert alert-danger" ng-show="!vm.loader && !vm.transactionsList.length">
+                                <p class="text-center">{{'No Transaction Found'|translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- START: ACTION FREE SECTION -->
+    <section class="sec-action-blk">
+        <div class="container">
+            <div class="pull-right list-rgt">
+                <div class="row" ng-show="!vm.loader">
+                    <div class="col-md-12 text-center" ng-hide="(vm.transactionsList.length < vm.itemsPerPage) && vm.currentPage==1">
+                        <uib-pagination ng-hide="!vm.transactionsList.length" previous-text="Previous" next-text="Next" total-items="vm.total_items" num-pages="numPages" ng-model="vm.currentPage" max-size="vm.maxSize" class="pagination-sm" boundary-link-numbers="true"
+                            rotate="false" items-per-page="vm.itemsPerPage" ng-change="vm.paginate()"></uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END: ACTION FREE SECTION -->
+    <!-- START: SUBMIT FREE SECTION -->
+    <div ng-if="!vm.loader" ng-include="'views/submit_free_ad.html'"></div>
+    <!-- END: SUBMIT FREE SECTION -->
+    <!--<div ng-include="'views/main_categories.html'"></div>-->
+    <!-- END: POPULAR SEARCH SECTION -->
+</div>

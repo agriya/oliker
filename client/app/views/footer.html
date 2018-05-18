@@ -1,0 +1,22 @@
+<!-- BEGIN: FOOTER -->
+<footer>
+    <div class="container">
+        <pages></pages>
+        <ul class="list-inline text-center socila-foo-block">
+            <li ng-hide="settings.SITE_TWITTER_URL == null || settings.SITE_TWITTER_URL ==''"> <a href="{{settings.SITE_TWITTER_URL}}" target="_blank" title='{{"Twitter"|translate}}'><span class="twiter-block"><i class="fa fa-twitter"></i></span></a> </li>
+            <li ng-hide="settings.SITE_FACEBOOK_URL == null || settings.SITE_FACEBOOK_URL ==''">
+            <a href="{{settings.SITE_FACEBOOK_URL}}" target="_blank" title='{{"Facebook"|translate}}'><span class="facebok-block"><i class="fa fa-facebook"></i></span></a> </li>
+            <li ng-hide="settings.SITE_PINTEREST_URL == null || settings.SITE_PINTEREST_URL ==''">
+            <a href="{{settings.SITE_PINTEREST_URL}}" target="_blank" title='{{"Pinterest"|translate}}'><span class="pint-block"><i class="fa fa-pinterest-p"></i></span></a> </li>
+            <li ng-hide="settings.SITE_GOOGLEPLUS_URL == null || settings.SITE_GOOGLEPLUS_URL ==''">
+            <a href="{{settings.SITE_GOOGLEPLUS_URL}}" target="_blank" title='{{"Google Plus"|translate}}'><span class="google-block"><i class="fa fa-google-plus"></i></span></a> </li>
+            <li ng-hide="settings.SITE_CONTACT_EMAIL == null || settings.SITE_CONTACT_EMAIL ==''">
+            <a href="mailto:{{settings.SITE_CONTACT_EMAIL}}" target="_blank" title='{{"Envelope"|translate}}'><span class="enve-block"><i class="fa fa-envelope-o"></i></span></a> </li>
+        </ul>
+        <div class="footer-btom">
+            <p class="text-center"> {{'Copyright'|translate}} © {{cdate | date:'yyyy'}} <a href="/app" title="{{settings.SITE_NAME}}" class="text-muted">{{ settings.SITE_NAME}},</a> {{'All rights reserved'|translate}}.</p>
+        </div>
+        <banner position="bottomBanner"></banner>
+    </div>
+</footer>
+<!-- BEGIN: FOOTER -->

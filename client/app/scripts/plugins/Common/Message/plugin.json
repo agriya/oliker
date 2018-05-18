@@ -1,0 +1,9 @@
+{
+	"name": "Common/Message", 
+	"class": "fa fa-2x fa-envelope",
+	"description": "Message",
+	"dependencies": "Common",
+	"module_id": "",
+	"module_hash": "",
+	"display_order": "20"
+}

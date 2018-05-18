@@ -1,0 +1,9 @@
+{
+	"db_user": "demoag",
+	"db_password": "YbyR3PWR1",
+	"db_name": "oliker",
+	"sftp_upload_path": "/home/demoag/html/oliker",
+	"sftp_host": "148.251.187.13",
+	"sftp_username": "demoag",
+    "sftp_password": "YbyR3PWR1"
+}

@@ -1,0 +1,24 @@
+<table class="table table-striped  table-hover table-bordered">
+    <tbody>
+        <tr class="">
+            <th class="bold" width="20%">Id</th>
+            <th class="bold" width="20%">Depends_on</th>
+            <th class="bold" width="20%">Depend_value</th>
+            <th class="bold" width="10%">Info</th>
+            <th class="bold " width="20%">Name</th>
+            <th class="bold center" width="20%">Display_name</th>
+            <th class="bold" width="20%">Input_type_id</th>
+            <th class="bold" width="20%">Input_type_name</th>
+        </tr>
+        <tr class="" ng-repeat="form_field in ad_form_fields">
+            <td class=" ">{{form_field.id}}</td>
+            <td class=" ">{{form_field.depends_on}}</td>
+            <td class=" ">{{form_field.depend_value}}</td>
+            <td class=" ">{{form_field.info}}</td>
+            <td class=" ">{{form_field.name}}</td>
+            <td class=" ">{{form_field.display_name}}</td>
+            <td class=" ">{{form_field.input_types.id}}</td>
+            <td class=" ">{{form_field.input_types.name}}</td>
+        </tr>
+    </tbody>
+</table>

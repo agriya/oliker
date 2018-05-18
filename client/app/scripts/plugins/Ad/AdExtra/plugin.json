@@ -1,0 +1,9 @@
+{
+	"name": "Ad/AdExtra", 
+	"class": "fa fa-2x fa-plus-square",
+	"description": "AdExtra",
+	"dependencies": "Ad",
+	"module_id": "",
+	"module_hash": "",
+	"display_order": "2"
+}

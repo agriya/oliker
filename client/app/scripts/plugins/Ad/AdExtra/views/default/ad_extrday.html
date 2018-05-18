@@ -1,0 +1,57 @@
+<!-- BEGIN: MAIN -->
+<div class="main">
+    <!-- BEGIN: GREAT PRICES SECTION -->
+    <section class="form-page-blk">
+        <div class="container" ng-controller="AdPaymentController as vm">
+            <div class="row">
+                <div ng-include="'views/loader.html'"></div>
+                <div class="col-md-12">
+                    <h3>{{'Ad ExtraDays'|translate}}</h3>
+                    <form class="clearfix form-horizontal" role="form" name="ExtraDayForm" ng-submit="vm.extraDaySave(ExtraDayForm.$valid)" ng-hide="!vm.category_extrdays.length">
+                        <div class="form-group extra-days"> <label for="Extra Days"></label>
+                            <div class="ad-extradays">
+                                <ul class="list-inline extra-days clearfix">
+                                    <li ng-repeat="category_extrday in vm.category_extrdays track by $index" ng-class="{'featrd-yellow':$index%3==0,'featrd-yellow featrd-green':$index%3==1,'featrd-yellow featrd-blue':$index%3==2}">
+                                        <div class="inner-featurd">
+                                            <div class="featrd-pos">
+                                                <h4> {{'Days'|translate}}:{{category_extrday.days}} </h4>
+                                            </div>
+                                            <div class="featurd-text"> &nbsp;&nbsp;&nbsp;&nbsp;{{category_extrday.ad_extra.name}} </div>
+                                        </div>
+                                        <div class="checkbox"> <label for="checkbox{{$index}}">
+                                            <input type="checkbox" id="checkbox{{$index}}" ng-click="vm.extraDaySave()" ng-model="vm.extra_day[category_extrday.ad_extra_id]">
+                                            <span>
+                                                <i class="fa fa-inr" aria-hidden="true"></i>  {{'Amount'|translate}}:{{category_extrday.amount}}
+                                            </span>                                                 
+                                        </label> </div>
+                                    </li>
+                                </ul>
+                           </div> 
+                        </div>
+                        <div class="panel clearfix space">
+                            <div class="panel clearfix space">
+                                <section class="table-blk table-add">
+                                    <div ng-include="'scripts/plugins/Common/Paypal/views/default/gateways_menu.html'"></div>
+                                </section>
+                                <!-- END: TABLE-BLK SECTION -->
+                                <div ng-if="vm.zazpay === true" class="well-sm">
+                                    <div class="row">
+                                        <div ng-include="'views/gateway.html'"></div>
+                                    </div>
+                                </div>
+                                <div ng-if="vm.paypal === true" class="well-sm">
+                                    <div class="row">
+                                        <div ng-include="'scripts/plugins/Common/Paypal/views/default/paypal.html'"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="alert alert-danger mspace" ng-show="!vm.category_extrdays.length">
+                        <p class="text-center" ng-show="!vm.loader">{{'No ExtraDay Found'|translate}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

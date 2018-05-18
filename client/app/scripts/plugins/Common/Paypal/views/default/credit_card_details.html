@@ -1,0 +1,66 @@
+<div ng-controller='CreditCardController as vm'>
+    <!-- BEGIN:  TABLE-BLK SECTION -->
+    <div ng-include="'views/main_tab.html'"></div>
+    <!-- END: TABLE-BLK SECTION -->
+    <section class="table-content custom-tabs">
+        <div class="container">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="hom">
+                    <div class="thumbnail">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div ng-include="'views/menu_tab.html'"></div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div ng-include="'views/loader.html'"></div>
+                            <div role="tabpanel" class="tab-pane fade in active" ng-show="!vm.loader" id="home-acti">
+                                <div class="notfications-content">
+                                    <h3 class="h4 ver-space15">{{'Add Your CreditCard Deatils'|translate}}</h3>
+                                </div>
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <form class="clearfix form-horizontal" role="form" name="CreditCardForm" ng-submit="vm.addCreditCardDetails(CreditCardForm.$valid)">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group" ng-class="{ 'has-error' : (vm.PaymentForm.$submitted || vm.PaymentForm.buyer_first_name.$touched) && (vm.PaymentForm.buyer_first_name.$pristine || vm.PaymentForm.buyer_first_name.$invalid) }"><input name="buyer_first_name" ng-model="vm.buyer.first_name" class="form-control"
+                                                            id="buyer_first_name" type="text" ng-required="true" placeholder="{{'FirstName'|translate}}">
+                                                        <div class="help-block" ng-show="(vm.PaymentForm.$submitted || vm.PaymentForm.buyer_name.$touched) && (vm.PaymentForm.buyer_name.$pristine || vm.PaymentForm.buyer_name.$invalid) && (vm.PaymentForm.buyer_name.$error.required)">{{'Required'|translate}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group" ng-class="{ 'has-error' : (vm.PaymentForm.$submitted || vm.PaymentForm.buyer_last_name.$touched) && (vm.PaymentForm.buyer_last_name.$pristine || vm.PaymentForm.buyer_last_name.$invalid) }"><input name="buyer_last_name" ng-model="vm.buyer.last_name" class="form-control"
+                                                            id="buyer_last_name" type="text" ng-required="true" placeholder="{{'LastName'|translate}}">
+                                                        <div class="help-block" ng-show="(vm.PaymentForm.$submitted || vm.PaymentForm.buyer_last_name.$touched) && (vm.PaymentForm.buyer_last_name.$pristine || vm.PaymentForm.buyer_last_name.$invalid) && (vm.PaymentForm.buyer_last_name.$error.required)">{{'Required'|translate}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4 class="payement-txt">Credit Card Details </h4>
+                                            <div ng-include="'scripts/plugins/Common/Paypal/views/default/credit_card.html'"> </div> <button type="submit" class="btn btn-primary"><span class="text-16">{{'Save'|translate}}</span></button>                                            </form>
+                                        <div>
+                                            <h4 class="payement-txt"> Credit Card Details List</h4>
+                                            <div class="credit-card">
+                                                <dl ng-if="vm.credit_card_details.length!==0" class="dl-horizontal">
+                                                    <dt>card number :</dt>
+                                                    <dd ng-repeat="detail in vm.credit_card_details">
+                                                        <span class="detail-list">{{detail.masked_cc}}</span>
+                                                        <a href="#" class="btn btn-danger detail-btn" ng-click="vm.removeCardDetails(detail.id)" title='{{"delete"|translate}}'>
+                                                            delete
+                                                            <i class="fa fa-times fa-fw" aria-hidden="true"></i> 
+                                                        </a>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                             <div class="alert alert-danger mspace" ng-if="vm.credit_card_details.length===0">
+                                <p class="text-center">{{'No CreditCard Details Found'|translate}}</p>
+                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <div ng-if="!vm.loader" ng-include="'views/submit_free_ad.html'"></div>

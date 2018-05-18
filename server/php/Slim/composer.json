@@ -1,0 +1,26 @@
+{
+	"name": "Base",
+	"description": "Base",
+	"keywords": [
+		"Base",
+		"slim"
+	],
+	"type": "project",
+	"minimum-stability": "RC",
+	"require": {
+		"slim/slim": "3.*",
+		"illuminate/database": "*",
+		"illuminate/pagination": "^5.2",
+		"illuminate/events": "5.4.27",
+		"illuminate/validation": "^5.3",
+		"swiftmailer/swiftmailer": "@stable",
+		"pavlakis/slim-cli": "*",
+		"illuminate/translation": "*",
+		"paypal/rest-api-sdk-php": "^1.11"
+	},
+	 "autoload": {
+		"psr-4": {
+			"Models\\": "lib/Models/"
+		}
+	}
+}

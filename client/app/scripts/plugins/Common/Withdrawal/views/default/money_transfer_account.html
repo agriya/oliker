@@ -1,0 +1,80 @@
+<div ng-controller='MoneyTransferAccountController as vm'>
+    <!-- BEGIN:  TABLE-BLK SECTION -->
+    <div ng-include="'views/main_tab.html'"></div>
+    <!-- END: TABLE-BLK SECTION -->
+    <section class="table-content">
+        <div class="container">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="hom">
+                    <div class="thumbnail">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div ng-include="'views/menu_tab.html'"></div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div ng-include="'views/loader.html'"></div>
+                            <div role="tabpanel" class="tab-pane fade in active" ng-show="!vm.loader" id="home-acti">
+                                <div class="notfications-content">
+                                    <h3 class="h4 ver-space15">{{'Money Transfer Account'|translate}}</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form role="form" class="adminpg-form" name="MoneyTransferAccAdd" ng-submit="vm.MoneyTransferAccSubmit(MoneyTransferAccAdd.$valid)" novalidate>
+                                        <div class="row">
+                                            <div class="col-sm-4" ng-class="{ 'has-error' : (MoneyTransferAccAdd.$submitted || MoneyTransferAccAdd.account.$touched) && (MoneyTransferAccAdd.account.$pristine || MoneyTransferAccAdd.account.$invalid) }"> <label class="control-label pro-font-semi-bold text-16" for="account">{{'Account Details'|translate}}</label> </div>
+                                            <div class="col-sm-8" ng-class="{ 'has-error' : (MoneyTransferAccAdd.$submitted || MoneyTransferAccAdd.account.$touched) && (MoneyTransferAccAdd.account.$pristine || MoneyTransferAccAdd.account.$invalid) }">
+                                            <textarea class="form-control" name="account" id="account" placeholder="{{'Account Details' | translate}}" ng-model='vm.account' ng-required="true"></textarea> <span class="help-block redc error" ng-show="(MoneyTransferAccAdd.$submitted || MoneyTransferAccAdd.account.$touched) && (MoneyTransferAccAdd.account.$pristine || MoneyTransferAccAdd.account.$invalid) && (MoneyTransferAccAdd.account.$error.required)">{{'Enter Account Details' | translate}}</span>
+                                                <div class="text-muted pro-font-light navbar-btn">
+                                                    <p class="no-mar"><span>{{'e.g'|translate}}</span>{{'Bank'|translate}}:&nbsp;{{'HDFC'|translate}}&nbsp;&nbsp;{{'Account No'|translate}}:&nbsp;XXXXXX <span>{{'IFSC Code'|translate}}:&nbsp;<span>{{'XXXXX'| translate}}</span></span>
+                                                        <span>({{'or'|translate}})</span></p>
+                                                    <p><span>{{'PayPal Account'|translate}}:&nbsp;<span>{{'example'|translate}}@{{'domain'|translate}}.{{'com'|translate}}</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-offset-4 col-sm-8"> 
+                                                <button type="submit" class="btn btn-primary btn-large clearfix">{{'Submit'|translate}}</button>
+                                            </div>
+                                        </div>
+                                    </form><br><br>
+                                    <div class="col-sm-offset-4 col-sm-8 user-accoumt-blk clearfix">
+                                        <div class="primary-account clearfix" ng-if="vm.moneyTransferAccLists.length > 0">
+                                            <div class="user-bank-detail-blk" ng-repeat='moneyTransferAccList in vm.moneyTransferAccLists'>
+                                                <p ng-bind-html="moneyTransferAccList.account"> {{moneyTransferAccList.account}} <span ng-if="moneyTransferAccList.is_primary > 0">{{'Primary Account' | translate}}</span> </p>
+                                                <a class="usr-account-delete" title='{{"Delete" | translate}}' ng-click='vm.MoneyTransferAccDelete(moneyTransferAccList.id)'><i class="fa fa-close cur"></i></a>
+                                            </div>
+                                            <p class="alert alert-danger" ng-show="_metadata.total_records === 0">{{'No records found' | translate}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alert alert-danger" ng-show="!vm.loader && !vm.moneyTransferAccLists.length">
+                            <p class="text-center">{{'No Money Transfer Account Found'|translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- START: ACTION FREE SECTION -->
+    <section class="sec-action-blk">
+        <div class="container">
+            <div class="pull-right list-rgt">
+                <div class="row" ng-show="!vm.loader">
+                    <div class="col-md-12 text-center" ng-hide="(vm.cashWithdrawalsList.length < vm.itemsPerPage) && currentPage==1">
+                        <uib-pagination ng-hide="!vm.cashWithdrawalsList.length" previous-text="Previous" next-text="Next" total-items="vm.totalItems" num-pages="numPages" ng-model="vm.currentPage" max-size="vm.maxSize" class="pagination-sm" boundary-link-numbers="true"
+                            rotate="false" items-per-page="vm.itemsPerPage" ng-change="vm.paginate()"></uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END: ACTION FREE SECTION -->
+    <!-- START: SUBMIT FREE SECTION -->
+    <!-- START: SUBMIT FREE SECTION -->
+    <div ng-if="!vm.loader" ng-include="'views/submit_free_ad.html'"></div>
+    <!-- END: SUBMIT FREE SECTION -->
+    <!--<div ng-include="'views/main_categories.html'"></div>-->
+    <!-- END: POPULAR SEARCH SECTION -->
+</div>

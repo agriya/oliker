@@ -1,0 +1,38 @@
+<div ng-controller="MesssageViewController as vm">
+    <!-- BEGIN:  TABLE-BLK SECTION -->
+    <div ng-include="'views/main_tab.html'"></div>
+    <!-- END: TABLE-BLK SECTION -->
+    <section class="table-content">
+        <div class="container">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="hom">
+                    <div class="thumbnail">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div ng-include="'views/menu_tab.html'"></div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div ng-include="'views/loader.html'"></div>
+                            <div role="tabpanel" class="tab-pane fade in active" ng-show="!vm.loader" id="home-acti">
+                                <div class="table-responsive">
+                                    <ul class="list-unstyled message-view">
+                                        <li>{{'Created'|translate}}: <span>{{vm.message.created_at | amDateFormat:'LL'}}</span></li>
+                                        <li>{{'Subject'|translate}}: <span>{{vm.message.message_content.subject}}</span></li>
+                                        <li>{{'Message'|translate}}: <span>{{vm.message.message_content.message}}</span></li>
+                                        <li ng-repeat="msg in vm.message.attachment"><a href="{{msg.image_name}}" class="btn btn-primary text-16" target="_blank"><i class="fa fa-paperclip fa-fw"></i>attachment{{$index+1}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- START: POPULAR SEARCH SECTION -->
+    <div ng-if="!vm.loader" ng-include="'views/submit_free_ad.html'"></div>
+    <!-- END: SUBMIT FREE SECTION -->
+    <!--<div ng-include="'views/main_categories.html'"></div>-->
+    <!-- END: POPULAR SEARCH SECTION -->
+</div>

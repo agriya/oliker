@@ -1,0 +1,52 @@
+<div class="table-blk table-add">
+<ul class="nav nav-tabs tab-space" id="myTab">
+    <li class="active"><a data-target="#credit_card" ng-click="vm.paymentChange('credit_card')" data-toggle="tab"><span class="credit-banner"></span> Credit Card</a></li>
+    <li><a data-target="#paypal" ng-click="vm.paymentChange('paypal')" data-toggle="tab"><span class="credit-banner paypal"></span> PayPal Credit</a></li>
+    <li ng-if="vm.credit_card_details.length!==0"><a data-target="#wallet" ng-click="vm.paymentChange('wallet')" data-toggle="tab"><span class="credit-banner wallet"></span> Wallet</a></li>
+</ul>
+</div>
+<div class="tab-content">
+    <div class="tab-pane active" id="credit_card">
+        <div ng-include="'views/loader.html'"></div>
+        <h2 class="payement-txt">Buyer Details </h2>
+        <p> Please Enter Your Personnel Details </p>
+        <div ng-if="vm.credit_card_buyer===true" ng-include="'scripts/plugins/Common/Paypal/views/default/paypal_buyer.html'"></div>
+        <h2 class="payement-txt">Credit Card Details </h2>
+        <p> Please Enter Credit Card Details </p>
+        <div ng-if="vm.credit_card_buyer===true" ng-include="'scripts/plugins/Common/Paypal/views/default/credit_card.html'"></div>
+        <div class="clearfix">
+            <div class="term-condition"> 
+                <button type="submit" class="btn btn-primary" title='{{"Pay Now"|translate}}'>{{'Pay Now'|translate}} <span ng-show="vm.paynow_is_disabled"><i class="fa fa-spinner fa-pulse fa-lg"></i></span></button> 
+            </div>
+            <div class="term-condition term-txt">
+                {{'By Clicking The "Pay Now" Button, You Agree To These '|translate}}
+                <a target="_blank" href="pages/2/terms-and-conditions" title='{{"Terms of Service"|translate}}' class="text-primary">{{'Terms of Service'|translate}}.</a>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="paypal">
+        <h2 class="payement-txt">Buyer Details </h2>
+        <p> Please Enter Your Personnel Details </p>
+        <div ng-if="vm.payment_type === 'paypal'" ng-include="'scripts/plugins/Common/Paypal/views/default/paypal_buyer.html'"></div>
+        <div class="clearfix">
+            <div class="term-condition"> 
+                <button type="submit" ng-disabled="vm.paynow_is_disabled" class="btn btn-primary" title='{{"Pay Now"|translate}}'>{{'Pay Now'|translate}} <span ng-show="vm.paynow_is_disabled"><i class="fa fa-spinner fa-pulse fa-lg"></i></span></button> 
+            </div>
+            <div class="term-condition term-txt">
+                {{'By Clicking The "Pay Now" Button, You Agree To These '|translate}}
+                <a target="_blank" href="pages/2/terms-and-conditions" title='{{"Terms of Service"|translate}}' class="text-primary">{{'Terms of Service'|translate}}.</a>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="wallet">
+        <div class="clearfix">
+        <div class="term-condition"> 
+            <button type="submit" ng-disabled="vm.paynow_is_disabled" class="btn btn-primary" title='{{"Pay Now"|translate}}'>{{'Pay Now'|translate}} <span ng-show="vm.paynow_is_disabled"><i class="fa fa-spinner fa-pulse fa-lg"></i></span></button> 
+        </div>
+        <div class="term-condition term-txt">
+            {{'By Clicking The "Pay Now" Button, You Agree To These '|translate}}
+            <a target="_blank" href="#!/pages/2/terms-and-conditions" title='{{"Terms of Service"|translate}}' class="text-primary">{{'Terms of Service'|translate}}.</a>
+        </div>
+    </div>    
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<div ng-controller="MesssagesController as vm">
+    <!-- BEGIN:  TABLE-BLK SECTION -->
+    <div ng-include="'views/main_tab.html'"></div>
+    <!-- END: TABLE-BLK SECTION -->
+    <section class="table-content">
+        <div class="container">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="hom">
+                    <div class="thumbnail">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div ng-include="'views/menu_tab.html'"></div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div ng-include="'views/loader.html'"></div>
+                            <div role="tabpanel" class="tab-pane fade in active" ng-show="!vm.loader" id="home-acti">
+                                <div class="table-responsive" ng-show="vm.messages.length">
+                                    <table ng-if="vm.message_type === 'inbox'" class="table table-striped list-group-item-text">
+                                        <thead>
+                                            <tr>
+                                                <th>{{'Created'| translate}}</th>
+                                                <th>{{'From'|translate}}</th>
+                                                <th>{{'Subject'|translate}}</th>
+                                                <th>{{'Message'|translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="message in vm.messages track by $index" ng-click="vm.viewMessage(message.id)" class="cur">
+                                                <td>{{message.created_at | amDateFormat:'LL'}}</td>
+                                                <td>
+                                                    <p class="truncate"> {{message.other_user_username}}</p>
+                                                </td>
+                                                <td>
+                                                    <p class="truncate">{{message.message_content.subject}}</p>
+                                                </td>
+                                                <td>
+                                                    <p class="truncate-3">{{message.message_content.message}}</p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table ng-if="vm.message_type === 'sent'" class="table table-striped list-group-item-text">
+                                        <thead>
+                                            <tr>
+                                                <th>{{'Created'| translate}}</th>
+                                                <th>{{'To'|translate}}</th>
+                                                <th>{{'Subject'|translate}}</th>
+                                                <th>{{'Message'|translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="message in vm.messages" ng-click="vm.viewMessage(message.id)" class="cur">
+                                                <td>{{message.created_at | amDateFormat:'LL'}}</td>
+                                                <td>
+                                                    <p class="truncate">{{message.other_user_username}}</p>
+                                                </td>
+                                                <td>
+                                                    <p class="truncate">{{message.message_content.subject}}</p>
+                                                </td>
+                                                <td>
+                                                    <p class="truncate-3">{{message.message_content.message}}</p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger mspace" ng-show="!vm.loader && !vm.messages.length">
+                                <p class="text-center">{{'No Message Found'|translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- START: ACTION FREE SECTION -->
+    <section class="sec-action-blk">
+        <div class="container">
+            <div class="pull-right list-rgt">
+                <div class="row" ng-show="!vm.loader">
+                    <div class="col-md-12 text-center" ng-hide="(vm.messages.length < vm.items_per_page) && vm.current_page==1">
+                        <uib-pagination ng-hide="!vm.messages.length" previous-text="Previous" next-text="Next" total-items="vm.total_items" num-pages="vm.no_of_pages" ng-model="vm.current_page" max-size="vm.maxSize" class="pagination-sm" boundary-link-numbers="true"
+                            rotate="false" items-per-page="vm.items_per_page" ng-change="vm.paginate()"></uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END: ACTION FREE SECTION -->
+    <!-- START: SUBMIT FREE SECTION -->
+    <!-- START: SUBMIT FREE SECTION -->
+    <div ng-if="!vm.loader" ng-include="'views/submit_free_ad.html'"></div>
+    <!-- END: SUBMIT FREE SECTION -->
+    <!--<div ng-include="'views/main_categories.html'"></div>-->
+    <!-- END: POPULAR SEARCH SECTION -->
+</div>

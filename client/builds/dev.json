@@ -1,0 +1,9 @@
+{
+	"db_user": "nginxpg",
+	"db_password": "xXVzKIqBC",
+	"db_name": "oliker",
+	"sftp_upload_path": "/home/nginxpg/html/oliker",
+	"sftp_host": "nginxpg.develag.com",
+	"sftp_username": "nginxpg",
+    "sftp_password": "xXVzKIqBC"
+}

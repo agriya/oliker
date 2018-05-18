@@ -1,0 +1,83 @@
+<div ng-controller="AdSearchController as vm">
+    <!-- BEGIN:  TABLE-BLK SECTION -->
+    <section class="table-blk">
+        <div class="container">
+            <div class="clearfix navbar-btn">
+                <div class="pull-left">
+                    <h3 class="text-primary text-28 font-wei300 list-group-item-heading">{{'Ad Search '|translate}}</h3>
+                    <p class="navbar-btn mange-txt">{{'Manage All Your Ad Searches'|translate}}</p>
+                </div>
+            </div>
+            <div ng-include="'views/users_account_left_side_menu.html'"></div>
+        </div>
+    </section>
+    <!-- END: TABLE-BLK SECTION -->
+    <section class="table-content">
+        <div class="container">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="hom">
+                    <div class="thumbnail">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div ng-include="'views/menu_tab.html'"></div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div ng-include="'views/loader.html'"></div>
+                            <div role="tabpanel" class="tab-pane fade in active" ng-show="!vm.loader" id="home-acti">
+                                <div class="table-responsive" ng-show="vm.ad_searches.length">
+                                    <table class="table table-striped list-group-item-text">
+                                        <thead>
+                                            <tr>
+                                                <th>{{'Created '|translate}}</th>
+                                                <th>{{'Keyword '|translate}}</th>
+                                                <th>{{'Category '|translate}}</th>
+                                                <th>{{'Description Search '|translate}}</th>
+                                                <th>{{'Ads with Images '|translate}}</th>
+                                                <th>{{'Notify New Ad Posted '|translate}}</th>
+                                                <th>{{'Action '|translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="ad_Search in vm.ad_searches">
+                                                <td>{{ad_Search.created_at |amDateFormat:'LL'}}</td>
+                                                <td>{{ad_Search.keyword}}</td>
+                                                <td>{{ad_Search.category_name}}</td>
+                                                <td> <i ng-show="ad_Search.is_search_in_description" class="fa fa-check icon-close icon-check" aria-hidden="true"></i> <i ng-show="!ad_Search.is_search_in_description" class="fa fa fa-times icon-close" aria-hidden="true"></i> </td>
+                                                <td> <i ng-show="ad_Search.is_only_ads_with_images" class="fa fa-check icon-close icon-check" aria-hidden="true"></i> <i ng-show="!ad_Search.is_only_ads_with_images" class="fa fa fa-times icon-close" aria-hidden="true"></i> </td>
+                                                <td> <i ng-show="ad_Search.is_notify_whenever_new_ads_posted" class="fa fa-check icon-close  icon-check" aria-hidden="true"></i> <i ng-show="!ad_Search.is_notify_whenever_new_ads_posted" class="fa fa fa-times icon-close" aria-hidden="true"></i>                                                    </td>
+                                                <td><a href="" ng-click="vm.AdSearchesRemove(ad_Search.id,$index)"><i class="fa fa-times icon-close  text-center" aria-hidden="true"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger mspace" ng-show=" !vm.loader && !vm.ad_searches.length">
+                                <p class="text-center">{{'No Search Found'|translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- START: ACTION FREE SECTION -->
+    <section class="sec-action-blk">
+        <div class="container">
+            <div class="pull-right list-rgt">
+                <div class="row" ng-show="!vm.loader">
+                    <div class="col-md-12 text-center" ng-hide="(vm.ad_searches.length < vm.items_per_page) && vm.current_page==1">
+                        <uib-pagination ng-hide="!vm.ad_searches.length" previous-text="Previous" next-text="Next" total-items="vm.total_items" num-pages="numPages" ng-model="vm.current_page" max-size="vm.maxSize" class="pagination-sm" boundary-link-numbers="true"
+                            rotate="false" items-per-page="vm.items_per_page" ng-change="vm.paginate()"></uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END: ACTION FREE SECTION -->
+    <!-- START: SUBMIT FREE SECTION -->
+    <div ng-if="!vm.loader" ng-include="'views/submit_free_ad.html'"></div>
+    <!-- END: SUBMIT FREE SECTION -->
+    <!--<div ng-include="'views/main_categories.html'"></div>-->
+    <!-- END: POPULAR SEARCH SECTION -->
+</div>

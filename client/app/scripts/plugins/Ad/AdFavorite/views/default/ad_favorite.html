@@ -1,0 +1,4 @@
+<div class="favorite-block"> <span><a href="" title='{{"Favorite"|translate}}'  ng-show="!vm.authentication"  ng-click="vm.callbackFn()"><i class="fa fa-heart-o"></i></a> 
+<a href="" title='{{"Favorite"|translate}}' ng-show="vm.authentication && vm.item.ad_favorite.length==0"  ng-click="vm.addFavorite(vm.item.id,vm.sequnce)"><i class="fa" ng-class="vm.authentication && vm.item.ad_favorite.length==0 ? 'fa-heart-o' : 'fa-heart'"></i></a>                                        
+     <a href="" title='{{"UnFavorite"|translate}}'  ng-show="vm.authentication && vm.item.ad_favorite.length> 0" ng-click="vm.removeFavorite(vm.item.ad_favorite[0].id,vm.sequnce)"><i class="fa" ng-class="vm.authentication && vm.item.ad_favorite.length > 0 ? 'fa-heart' : 'fa-heart-o'"></i></a>
+    </span> </div>

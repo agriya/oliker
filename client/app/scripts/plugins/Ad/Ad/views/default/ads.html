@@ -1,0 +1,183 @@
+<div class="main">
+    <!-- BEGIN: SEARCH LISTS -->
+    <div class="product-lists" ng-controller="AdsListController as vm">
+        <div class="container">
+            <!-- BEGIN: BREAD CRUMB SECTION -->
+            <div class="breadcrumb-block">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="/app" title='{{"Home"|translate}}'><img src="/images/bread-home.png" alt="[Image: Home]"></a>
+                    </li>
+                    <li class="breadcrumb-item active">{{'Ads'|translate}} ({{vm.ads_count}})</li>
+                </ol>
+            </div>
+            <!-- END: BREAD CRUMB SECTION -->
+            <div class="row">
+                <div class="col-md-3 filters-menu">
+                    <div class="menu">
+                        <div class="filter-title btn-primary">{{'Filter By'|translate}}</div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a href="" data-toggle="collapse" ng-click="vm.is_search_collapsed = !vm.is_search_collapsed" title='{{"Search"|translate}}'> <i ng-show="!vm.is_search_collapsed" class="fa fa-caret-down fa-fw icon-up"></i> <i ng-show="vm.is_search_collapsed" class="fa fa-caret-up fa-fw icon-dowm"></i> {{'Search'|translate}} </a>
+                            </div>
+                            <div uib-collapse="vm.is_search_collapsed">
+                                <div class="checkbox"> <label>
+                                            <input type="checkbox" id="checkbox{{$index}}" ng-model="vm.is_search_in_description" ng-click="vm.getAdSearchInDesciption(vm.is_search_in_description)">
+                                             <span>{{'Search In Description'|translate}}?</span> 
+                                         </label> </div>
+                                <div class="checkbox"> <label>
+                                             <input type="checkbox" id="checkbox{{$index}}" ng-model="vm.is_only_ads_with_images" ng-click="vm.getAdsOnlyWithImages(vm.is_only_ads_with_images)">
+                                             <span title="{{advertisertype.name}}">{{'Only Ads With images'|translate}}?</span> 
+                                         </label> </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a href="" data-toggle="collapse" ng-click="vm.is_category_collapsed = !vm.is_category_collapsed" title='{{"Categories"|translate}}'> <i ng-show="!vm.is_category_collapsed" class="fa fa-caret-down fa-fw icon-up"></i> <i ng-show="vm.is_category_collapsed" class="fa fa-caret-up fa-fw icon-dowm"></i> {{'Categories'|translate}} </a>
+                            </div>
+                            <div uib-collapse="vm.is_category_collapsed">
+                                <form>
+                                    <div class="form-group"> <input class="form-control" ng-model="category.name" placeholder="{{'Search the category'|translate}}"> </div>
+                                </form>
+                                <div class="checkbox" ng-repeat="category in vm.categories| filter:category.name"> <label>
+                                        <input type="checkbox" id="checkbox{{$index}}"  ng-model="vm.category_sort[category.id]" ng-click="vm.categoryFilter()">
+                                        <span title="{{category.title}}">{{category.name}}</span> 
+                                            <div class="checkbox" ng-repeat="subcategory in category.subcategories"><label>
+                                        <input type="checkbox" id="checkbox{{$index}}"  ng-model="vm.category_sort[subcategory.id]" ng-click="vm.categoryFilter()">
+                                        <span title="{{subcategory.title}}">{{subcategory.name}}</span> </label></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a href="" data-toggle="collapse" ng-click="vm.is_price_collapsed = !vm.is_price_collapsed" title='{{"Price"|translate}}'> <i ng-show="!vm.is_price_collapsed" class="fa fa-caret-down fa-fw icon-up"></i> <i ng-show="vm.is_price_collapsed" class="fa fa-caret-up fa-fw icon-dowm"></i> {{'Price'|translate}} </a>
+                        </div>
+                        <div uib-collapse="vm.is_price_collapsed" class="range-s">
+                            <rzslider rz-slider-model="vm.slider.minValue" rz-slider-high="vm.slider.maxValue" rz-slider-options="vm.slider.options"></rzslider>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a href="" data-toggle="collapse" ng-click="vm.is_advertiser_type_collapsed = !vm.is_advertiser_type_collapsed" title='{{"Advertiser Type"|translate}}'> <i ng-show="!vm.is_advertiser_type_collapsed" class="fa fa-caret-down fa-fw icon-up"></i> <i ng-show="vm.is_advertiser_type_collapsed" class="fa fa-caret-up fa-fw icon-dowm"></i> {{'Advertiser Type'|translate}} </a>
+                        </div>
+                        <div uib-collapse="vm.is_advertiser_type_collapsed">
+                            <div class="checkbox" ng-repeat="advertisertype in vm.advertiser_types"> <label>
+                                             <input type="checkbox" id="checkbox{{$index}}" ng-model="vm.advertiser_typesort[advertisertype.id]" ng-click="vm.setAdvertiserType(advertisertype.id)()">
+                                             <span title="{{advertisertype.name}}">{{advertisertype.name}}</span> 
+                                         </label> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 search-lists">
+                <div ng-include="'views/loader.html'"></div>
+                <div class="panel panel-default search-title clearfix">
+                    <ul class="list-inline pull-left no-mar">
+                        <li ng-if="vm.top_ads.length" class="pull-left">{{'Top Ads'|translate}}</li>
+                        <li ng-if="!vm.top_ads.length" class="pull-left">{{'Ads'|translate}} ({{vm.ads_count}})</li>
+                    </ul>
+                    <ul class="list-inline pull-right no-mar">
+                        <li ng-show="mainVm.isAuth" class="ver-mspace"> <a href="" title='{{"Save Search"|translate}}' ng-show="mainVm.isAuth" ng-click="vm.saveSearch()">{{'Save Search'|translate}}</a></li>
+                        <li class="dropdown"> <span class="sort">{{'Sort:'|translate}}</span> <a href="" title='{{"Recent"|translate}}' ng-class="dropdown" data-toggle="dropdown" ng-if="vm.ad_sort == 'recent'">{{'Recent'|translate}} <i class="fa fa-angle-down"></i></a>
+                            <a
+                                href="" class="dropdown" data-toggle="dropdown" title='{{"Low Price"|translate}}' ng-if="vm.ad_sort == 'low_price'">{{'Low Price'|translate}}<i class="fa fa-angle-down"></i></a> <a href="" class="dropdown" title='{{"High Price"|translate}}' data-toggle="dropdown" ng-if="vm.ad_sort == 'high_price'">{{'High Price'|translate}} <i class="fa fa-angle-down"></i></a>
+                                <!--<a href="" class="dropdown" data-toggle="dropdown" ng-if="vm.ad_sort == 'recent'">{{'Recent'|translate}} <i class="fa fa-angle-down"></i></a>-->
+                                <ul class="dropdown-menu">
+                                    <li><a href="" ng-click="vm.sortAd('low_price')" title='{{"Low Price"|translate}}'>{{'Low Price'|translate}}</a></li>
+                                    <li><a href="" ng-click="vm.sortAd('high_price')" title='{{"High Price"|translate}}'>{{'High Price'|translate}}</a></li>
+                                    <li><a href="" ng-click="vm.sortAd('recent')" title='{{"Recent"|translate}}'>{{'Recent'|translate}}</a></li>
+                                </ul>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="list-inline">
+                    <li class="list-group" ng-repeat="top_ad in vm.top_ads|limitTo:5">
+                        <div class="show list-group-item clearfix">
+                            <div class="row">
+                                <div class="media col-md-9 col-sm-10">
+                                    <div class="pull-left pr">
+                                        <a href="ad/{{top_ad.id}}/{{top_ad.slug}}" title="{{top_ad.title}}"><img ng-src="{{top_ad.image_name}}" alt="[Image: Ad]" title="{{top_ad.title}}" class="pull-left "></a>
+                                        <div ng-show="{{top_ad.is_show_as_top_ads}}" class="top "><span>{{'TOP'|translate}}</span></div>
+                                    </div>
+                                    <div class="media-body ">
+                                        <a href="ad/{{top_ad.id}}/{{top_ad.slug}}" title="{{top_ad.title}}">
+                                            <h4 class="truncate-3">{{top_ad.title}}</h4>
+                                        </a>
+                                        <p>{{top_ad.description}}</p>
+                                        <ul class="list-inline h5 place">
+                                            <li title="{{ top_ad.created_at | amDateFormat: 'LL' }}">{{top_ad.created_at|amDateFormat:'LL'}}</li>
+                                            <li>|</li>
+                                            <li class="truncate" title="{{top_ad.location}}">{{top_ad.location}}</li>
+                                            <li>|</li>
+                                            <li class="truncate" title="{{top_ad.category.name}}">{{top_ad.category.name}}</li>
+                                        </ul>
+                                        <adfavorite item="top_ad" authentication="mainVm.isAuth" callback-fn="mainVm.openLoginModal('login')"></adfavorite>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 text-right">
+                                    <h4>{{top_ad.price | currency : selectedCurrency.currency_symbol : GeneralConfig.fraction}}</h4>
+                                    <p ng-show="top_ad.is_negotiable">{{'Negotiable'|translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <!-- All Ads section -->
+                <p ng-hide="!vm.top_ads.length">{{'All Ads'|translate}} ({{vm.ads_count}})</p>
+                <ul class="list-inline">
+                    <li class="list-group" ng-repeat="ad in vm.ads">
+                        <div class="show list-group-item clearfix" ng-class="{'active':ad.is_highlighted}">
+                            <div class="row">
+                                <div class="media col-md-9 col-sm-10">
+                                    <div class="pull-left pr">
+                                        <a href="ad/{{ad.id}}/{{ad.slug}}" title="{{ad.title}}" class="pull-left"><img ng-src="{{ad.image_name}}" alt="[Image: Ad]" title="{{ad.title}}" class="pull-left"></a>
+                                        <div ng-show="{{ad.is_show_as_top_ads && !ad.is_urgent}}" class="top"><span>{{'TOP'|translate}}</span></div>
+                                        <div ng-show="{{ad.is_urgent && !ad.is_show_as_top_ads}}" class="urgent"><span>{{'urgent'|translate}}</span></div>
+                                        <div ng-show="{{ad.is_urgent && ad.is_show_as_top_ads}}" class="urgent urgent-left"><span>{{'urgent'|translate}}</span></div>
+                                        <div ng-show="{{ad.is_urgent && ad.is_show_as_top_ads}}" class="top"><span>TOP</span></div>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="ad/{{ad.id}}/{{ad.slug}}" title="{{ad.title}}">
+                                            <h4 class="truncate-3">{{ad.title}}</h4>
+                                        </a>
+                                        <p>{{ad.description}}</p>
+                                        <ul class="list-inline h5 place">
+                                            <li title="{{ ad.created_at | amDateFormat: 'LL' }}">{{ad.created_at |amDateFormat:'LL'}}</li>
+                                            <li>|</li>
+                                            <li class="truncate" title="{{ad.location}}">{{ad.location}}</li>
+                                            <li>|</li>
+                                            <li class="truncate" title="{{ad.category.name}}">{{ad.category.name}}</li>
+                                        </ul>
+                                        <adfavorite item="ad" authentication="mainVm.isAuth" callback-fn="mainVm.openLoginModal('login')"></adfavorite>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 text-right">
+                                    <h4>{{ad.price | currency : selectedCurrency.currency_symbol : GeneralConfig.fraction}}</h4>
+                                    <p ng-show="ad.is_negotiable">{{'Negotiable'|translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <div class="alert alert-danger mspace" ng-show="!vm.loader &&!vm.ads.length">
+                        <p class="text-center">{{'No Ads Found'|translate}}</p>
+                    </div>
+                </ul>
+                <div class="row" ng-show="!vm.loader">
+                    <div class="col-md-12 text-center" ng-hide="(vm.ads.length < vm.items_per_page) && vm.current_page==1">
+                        <uib-pagination ng-hide="!vm.ads.length" previous-text="Previous" next-text="Next" total-items="vm.total_items" num-pages="numPages" ng-model="vm.current_page" max-size="vm.max_size" class="pagination-sm" boundary-link-numbers="true"
+                            rotate="false" items-per-page="vm.items_per_page" ng-change="vm.paginate()"></uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- START: SUBMIT FREE SECTION -->
+<div ng-include="'views/submit_free_ad.html'"></div>
+<!-- END: SUBMIT FREE SECTION -->
+<!--<div ng-include="'views/main_categories.html'"></div>-->
+<!-- END: POPULAR SEARCH SECTION -->
+<!-- END: POPULAR SEARCHES SECTION -->
+</div>
+<!-- END: main -->

@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group" ng-class="{ 'has-error' : (vm.PaymentForm.$submitted || vm.PaymentForm.buyer_name.$touched) && (vm.PaymentForm.buyer_name.$pristine || vm.PaymentForm.buyer_name.$invalid) }"><input name="buyer_name" ng-model="vm.buyer.buyer_name" class="form-control" id="buyer_name" type="text" ng-required="true" placeholder="{{'Name'|translate}}">
+            <div class="help-block" ng-show="(vm.PaymentForm.$submitted || vm.PaymentForm.buyer_name.$touched) && (vm.PaymentForm.buyer_name.$pristine || vm.PaymentForm.buyer_name.$invalid) && (vm.PaymentForm.buyer_name.$error.required)">{{'Required'|translate}}</div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group" ng-class="{ 'has-error' : (vm.PaymentForm.$submitted || vm.PaymentForm.buyer_email.$touched) && (vm.PaymentForm.buyer_email.$pristine || vm.PaymentForm.buyer_email.$invalid) }"><input name="buyer_email" ng-model="vm.buyer.buyer_email" class="form-control" id="buyer_email" type="email" placeholder="{{'Email'|translate}}" ng-required="true">
+            <div ng-show="((vm.PaymentForm.$submitted || vm.PaymentForm.buyer_email.$touched) && (vm.PaymentForm.buyer_email.$pristine || vm.PaymentForm.buyer_email.$invalid))">
+                <div class="help-block" ng-show="(vm.PaymentForm.buyer_email.$error.required)">{{'Required'|translate}}</div>
+                <div class="help-block" ng-show="(vm.PaymentForm.buyer_email.$error.email)">{{'Enter Valid Email'|translate}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group" ng-class="{ 'has-error' : (vm.PaymentForm.$submitted || vm.PaymentForm.buyer_address.$touched) && (vm.PaymentForm.buyer_address.$pristine || vm.PaymentForm.buyer_address.$invalid) }"><input name="buyer_address" ng-model="vm.buyer.buyer_address" class="form-control" id="buyer_address" type="text" ng-required="true" placeholder="{{'Address'|translate}}">
+            <div class="help-block" ng-show="(vm.PaymentForm.$submitted || vm.PaymentForm.buyer_address.$touched) && (vm.PaymentForm.buyer_address.$pristine || vm.PaymentForm.buyer_address.$invalid) && (vm.PaymentForm.buyer_address.$error.required)">{{'Required'|translate}}</div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group" ng-class="{ 'has-error' : (vm.PaymentForm.$submitted || vm.PaymentForm.buyer_city.$touched) && (vm.PaymentForm.buyer_city.$pristine || vm.PaymentForm.buyer_city.$invalid) }"><input name="buyer_city" id="buyer_city" class="form-control" ng-model="vm.buyer.buyer_city" type="text" ng-required="true" placeholder="{{'City'|translate}}">
+            <div class="help-block" ng-show="(vm.PaymentForm.$submitted || vm.PaymentForm.buyer_city.$touched) && (vm.PaymentForm.buyer_city.$pristine || vm.PaymentForm.buyer_city.$invalid) &&(vm.PaymentForm.buyer_city.$error.required)">{{'Required'|translate}}</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group" ng-class="{ 'has-error' : (vm.PaymentForm.$submitted || vm.PaymentForm.buyer_state.$touched) && (vm.PaymentForm.buyer_state.$pristine || vm.PaymentForm.buyer_state.$invalid) }"><input name="buyer_state" ng-model="vm.buyer.buyer_state" class="form-control" id="buyer_state" type="text" ng-required="true" placeholder="{{'State'|translate}}">
+            <div class="help-block" ng-show="(vm.PaymentForm.$submitted || vm.PaymentForm.buyer_state.$touched) && (vm.PaymentForm.buyer_state.$pristine || vm.PaymentForm.buyer_state.$invalid) && (vm.PaymentForm.buyer_state.$error.required)">{{'Required'|translate}}</div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group" ng-class="{ 'has-error' : (vm.PaymentForm.$submitted || vm.PaymentForm.buyer_country.$touched) && (vm.PaymentForm.buyer_country.$pristine || vm.PaymentForm.buyer_country.$invalid) }"><select name="buyer_country" id="buyer_country" class="form-control" ng-model="vm.buyer.buyer_country_iso2" ng-options="country.iso_alpha2 as country.name for country in vm.countries" ng-required="true">
+                <option value="">{{'Country'|translate}}</option>
+            </select>
+            <div class="help-block" ng-show="(vm.PaymentForm.$submitted || vm.PaymentForm.buyer_country.$touched) && (vm.PaymentForm.buyer_country.$pristine || vm.PaymentForm.buyer_country.$invalid) && (vm.PaymentForm.buyer_country.$error.required)">{{'Required'|translate}}</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group" ng-class="{ 'has-error' : (vm.PaymentForm.$submitted || vm.PaymentForm.buyer_zip_code.$touched) && (vm.PaymentForm.buyer_zip_code.$pristine || vm.PaymentForm.buyer_zip_code.$invalid) }"><input name="buyer_zip_code" ng-model="vm.buyer.buyer_zipcode" class="form-control" id="buyer_zip_code" type="text" ng-required="true" placeholder="{{'Zip Code'|translate}}">
+            <div class="help-block" ng-show="(vm.PaymentForm.$submitted || vm.PaymentForm.buyer_zip_code.$touched) && (vm.PaymentForm.buyer_zip_code.$pristine || vm.PaymentForm.buyer_zip_code.$invalid)">
+                <div class="help-block" ng-show="(vm.PaymentForm.buyer_zip_code.$error.required)">{{'Required'|translate}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group" ng-class="{ 'has-error' : (vm.PaymentForm.$submitted || vm.PaymentForm.buyer_phone.$touched) && (vm.PaymentForm.buyer_phone.$pristine || vm.PaymentForm.buyer_phone.$invalid) }"><input name="buyer_phone" ng-model="vm.buyer.buyer_phone" class="form-control" id="buyer_phone" type="text" ng-required="true" placeholder="{{'Phone'|translate}}">
+            <div class="help-block" ng-show="(vm.PaymentForm.$submitted || vm.PaymentForm.buyer_phone.$touched) && (vm.PaymentForm.buyer_phone.$pristine || vm.PaymentForm.buyer_phone.$invalid)">
+                <div class="help-block" ng-show="(vm.PaymentForm.buyer_phone.$error.required)">{{'Required'|translate}}</div>
+            </div>
+        </div>
+    </div>
+</div>

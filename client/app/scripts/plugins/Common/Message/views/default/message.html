@@ -1,0 +1,2 @@
+<li ng-if="vm.ad.ad_owner.username!=user.username"> <button class="btn log-chat-btun" ng-show="!mainVm.isAuth" title="{{'Message'|translate}}" ng-click="mainVm.openLoginModal('login')">{{'Contact Advertiser'|translate}}</button> <button class="btn log-chat-btun" ng-show="mainVm.isAuth" title='{{"Contact Advertiser"|translate}}'
+        ng-click="vm.openMessageModal(vm.ad)">{{'Contact Advertiser'|translate}}</button> </li>

@@ -1,0 +1,86 @@
+<div ng-controller="AdPackagesController as vm">
+    <div ng-include="'views/main_tab.html'"></div>
+    <section class="table-content custom-tabs">
+        <div class="container">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="hom">
+                    <div class="thumbnail">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div ng-include="'views/menu_tab.html'"></div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div ng-include="'views/loader.html'"></div>
+                            <div role="tabpanel" class="tab-pane fade in active" id="home-acti">
+                                <section class="grt-prices-blk">
+                                    <form role="form" class="form-horizontal clearfix" name="PaymentForm" ng-submit="vm.PaymentSubmit(PaymentForm)">
+                                        <div class="notfications-content">
+                                            <h4>{{'Select Category'|translate}}</h4>
+                                        </div>
+                                        <div class="panel">
+                                            <ui-select class="ct-search package-search" ng-model="vm.selected_category" on-select="vm.getAdPackage($item.id)">
+                                                <ui-select-match placeholder="{{'Select Category'|translate}}">{{$select.selected.name}}</ui-select-match>
+                                                <ui-select-choices position="down" repeat="category in vm.categories track by $index" refresh="vm.refreshAddresses($select.search)" refresh-delay="0">
+                                                    <div class="sl-name" ng-bind-html="category.name | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                            <div ng-if="vm.is_show_ad_package === true">
+                                                <div class="bg-grey well-sm hor-mspace">
+                                                    <h4>{{'Packages'|translate}}</h4>
+                                                </div>
+                                                <p class="well-sm" ng-if="vm.ad_packages.length"> {{'Choose Your Packages'|translate}} </p>
+                                                <div class="prices-cont">
+                                                    <div class="row">
+                                                        <div class="col-sm-4" ng-repeat="ad_package in vm.ad_packages">
+                                                            <div class="panel" ng-class="{ 'active-orange' : $index == 0 && vm.ad_package_default === true,'active-blue':$index%3 == 1 && vm.selected_index === $index,'active-pink':$index%3 == 2 && vm.selected_index === $index}"
+                                                                ng-click="vm.selectAdPackage(ad_package,$index)">
+                                                                <div class="text-center">
+                                                                    <h4 class="h3 inner-price no-mar txt-grey font-wei400">{{ad_package.name}}</h4>
+                                                                    <div class="bg-primary">
+                                                                        <h4 class="h2 basic-amt no-mar font-wei600 price" ng-class="{ 'basic-amt' : $index%3 == 0,'awesome-txt':$index%3 == 1,'price-amt':$index%3 == 2}"> <span class="fa-inverse">{{ad_package.amount | currency : selectedCurrency.currency_symbol : GeneralConfig.fraction}}</span> <span class="text-14 fa-inverse font-wei300">{{ad_package.validity_days}}{{'days'|translate}}</span>                                                                            </h4>
+                                                                    </div>
+                                                                    <h3 class="h4 bill-txt font-wei400 no-mar">{{'Ads Allowed'|translate}}:{{ad_package.additional_ads_allowed}} <span class="show">Points:{{ad_package.credit_points}}</span> <span class="show">Points Validity:{{ad_package.points_valid_days}}days</span>                                                                        </h3>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="alert alert-danger mspace" ng-if="!vm.ad_packages.length">
+                                                            <p class="text-center" ng-show="!vm.loader">{{'No Package Found'|translate}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div ng-if="vm.ad_packages.length">
+                                                <div class="panel clearfix space">
+                                                    <section class="table-blk table-add">
+                                                        <div ng-include="'scripts/plugins/Common/Paypal/views/default/gateways_menu.html'"></div>
+                                                    </section>
+                                                    <!-- END: TABLE-BLK SECTION -->
+                                                    <div ng-if="vm.zazpay === true" class="well-sm">
+                                                        <div class="row">
+                                                            <div ng-include="'views/gateway.html'"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div ng-if="vm.paypal === true" class="well-sm">
+                                                        <div class="">
+                                                            <div ng-include="'scripts/plugins/Common/Paypal/views/default/paypal.html'"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                            </div>
+                            </form>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</section>
+</div>
+<!-- START: SUBMIT FREE SECTION -->
+<div ng-if="!vm.loader" ng-include="'views/submit_free_ad.html'"></div>
+<!-- END: SUBMIT FREE SECTION -->
+<!--<div ng-include="'views/main_categories.html'"></div>-->

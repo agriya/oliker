@@ -1,0 +1,64 @@
+{
+  "name": "oliker",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "1.5.2",
+    "angular-resource": "1.5.2",
+    "angular-sanitize": "1.5.2",
+    "angular-animate": "1.5.2",
+    "angular-cookies": "1.5.7",
+    "bootstrap": "~3.3",
+    "angular-bootstrap": "~1.3.2",
+    "angular-ui-router": "~0.2.13",
+    "ng-admin": "1.0.0-alpha4",
+    "satellizer": "~0.14.0",
+    "angular-md5": "^0.1.10",
+    "angular-growl-v2": "~0.7.5",
+    "angular-google-places-autocomplete": "^0.2.7",
+    "angular-filter": "^0.5.8",
+    "angular-http-auth": "^1.3.0",
+    "bootstrap-ui-datetime-picker": "^2.4.0",
+    "angular-recaptcha": "^3.0.3",
+    "angulartics": "^1.0.0",
+    "angulartics-google-analytics": "^0.2.0",
+    "angular-translate": "^2.11.0",
+    "angular-translate-loader-static-files": "^2.11.0",
+    "angular-dynamic-locale": "^0.1.32",
+    "angular-translate-handler-log": "^2.11.0",
+    "angular-translate-storage-cookie": "^2.11.0",
+    "angular-translate-storage-local": "^2.11.0",
+    "angular-i18n": "^1.5.7",
+    "ngmap": "^1.17.6",
+    "angular-loading-bar": "^0.9.0",
+    "angular-payment": "*",
+    "angular-ui-select": "v0.19.6",
+    "angular-form-builder": "v0.1.0",
+    "angular-validator": "v0.2.6",
+    "ng-file-upload": "12.2.13",
+    "angular-moment": "0.10.3",
+    "angular-swipe": "~0.1.0",
+    "angular-slider": "v0.1.6",
+    "angularjs-slider": "5.8.7",
+    "angular-flexslider": "v1.3.2",
+    "angular-deferred-bootstrap": "^0.1.9",
+    "angular-sweetalert": "latest"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.18"
+  },
+  "resolutions": {
+    "angular": ">=1.5.2",
+    "angular-bootstrap": ">=1.3.2"
+  },
+  "appPath": "app",
+  "moduleName": "olikerApp",
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
+}

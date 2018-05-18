@@ -1,0 +1,9 @@
+{
+	"name": "Ad/AdPackage", 
+	"class": "fa fa-2x fa-gift",
+	"description": "AdPackage",
+	"dependencies": "Ad",
+	"module_id": "",
+	"module_hash": "",
+	"display_order": "3"
+}

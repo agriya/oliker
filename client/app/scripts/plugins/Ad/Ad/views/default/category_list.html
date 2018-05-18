@@ -1,0 +1,13 @@
+<div class="index-categry" ng-show="vm.categories.length > 0">
+    <div class="container custom-container">
+        <ul class="list-inline text-center">
+            <li ng-repeat="category in vm.categories" class="col-md-2 col-sm-4">
+                <a href="category/{{category.id}}/{{category.slug}}" title="{{category.name}}" class="show"> <span class="show">
+                                	<img ng-src="{{category.image_name}}" alt="[Image: Category]" title="{{category.name}}">
+                                </span>
+                    <p class="text-capitalize">{{category.name}}</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div> 

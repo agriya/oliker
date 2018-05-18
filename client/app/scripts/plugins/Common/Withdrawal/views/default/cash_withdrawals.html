@@ -1,0 +1,124 @@
+<div ng-controller='CashWithdrawalsController as vm'>
+    <!-- BEGIN:  TABLE-BLK SECTION -->
+    <div ng-include="'views/main_tab.html'"></div>
+    <!-- END: TABLE-BLK SECTION -->
+    <section class="table-content">
+        <div class="container">
+            <div class="tab-content user-settings">
+                <div role="tabpanel" class="tab-pane fade in active" id="hom">
+                    <div class="thumbnail">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div ng-include="'views/menu_tab.html'"></div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div ng-include="'views/loader.html'"></div>
+                            <div role="tabpanel" class="tab-pane fade in active" ng-show="!vm.loader" id="home-acti">
+                                <div class="notfications-content">
+                                    <h3 class="h4 ver-space15">{{'Cash Withdrawals'|translate}}</h3>
+                                </div>
+                                <div class="panel-heading">
+                                    <form class="form-horizontal clearfix" role="form" name="moneyTransfer" ng-submit="vm.userCashWithdrawSubmit(moneyTransfer.$valid)" ng-if='vm.moneyTransferList.length' novalidate>
+                                        <div class="col-sm-10">
+                                            <div class="form-group no-mar" ng-class="{ 'has-error' : ((moneyTransfer.$submitted || moneyTransfer.amount.$touched) && (moneyTransfer.amount.$pristine || moneyTransfer.amount.$invalid)) || amountErr }"> <label class="col-sm-4 control-label">{{'Choose your money transfer option'|translate}}</label>
+                                                <ul class="col-sm-8 list-inline transfer-option">
+                                                    <li class="show" ng-repeat="moneyTransfer in vm.moneyTransferList">
+                                                        <div class="radio"> <label>
+                                    <input type="radio" value="{{moneyTransfer.id}}" id="moneyTransfer_{{moneyTransfer.id}}" name="money_transfer_account_id" ng-model="money_transfer_account_id" ng-click="vm.selectedAccount(moneyTransfer.id)">
+                                    <span></span>
+                                    <p class="no-mar" ng-bind-html="moneyTransfer.account"></p>
+                                </label> </div>
+                                                    </li> <span class="has-error">
+                                    <span class="help-block error" ng-show="vm.account_error">
+                                        {{'You must select one account' | translate}}
+                                    </span> </span>
+                                                </ul>
+                                            </div>
+                                            <div class="form-group no-mar" ng-class="{ 'has-error' : ((moneyTransfer.$submitted || moneyTransfer.amount.$touched) && (moneyTransfer.amount.$pristine || moneyTransfer.amount.$invalid)) || amountErr }">
+                                                <div class="row"> <label class="col-sm-4 control-label" for="amount">{{'Amount'|translate}}</label>
+                                                    <div class="col-sm-8"> <input type="number" min="{{vm.minimum_withdraw_amount}}" max="{{vm.maximum_withdraw_amount}}" class="form-control" name="amount" id="amount" placeholder="{{'Amount'|translate}}" ng-model="vm.amount"
+                                                            ng-change="amountErr=''" required>
+                                                        <div ng-show="((moneyTransfer.$submitted || moneyTransfer.amount.$touched) && (moneyTransfer.amount.$pristine || moneyTransfer.amount.$invalid)) || amountErr">
+                                                        <span class="help-block error" ng-show="(moneyTransfer.amount.$error.required)">
+                                                            {{'You must enter the amount' | translate}}
+                                                        </span> <span class="help-block error" ng-show="(moneyTransfer.amount.$error.number)">
+                                                            {{'You did not enter a valid number' | translate}}
+                                                        </span> <span class="help-block error" ng-show="(moneyTransfer.amount.$error.min)">
+                                                            {{'Your field value is lesser than minimum value' | translate}}
+                                                        </span> <span class="help-block error" ng-show="(moneyTransfer.amount.$error.max)">
+                                                            {{'Your field value is greater than maximum value' | translate}}
+                                                        </span> <span class="help-block error" ng-show="amountErr">
+                                                            {{amountErr}}
+                                                        </span> </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="list-inline col-sm-offset-4 space">
+                                                    <li>{{'Minimum withdraw amount'|translate}}:&nbsp;<span>{{vm.minimum_withdraw_amount | currency : selectedCurrency.currency_symbol : GeneralConfig.fraction}}</span></li>
+                                                    <li>{{'Maximum withdraw amount'|translate}}:&nbsp;<span>{{vm.maximum_withdraw_amount | currency : selectedCurrency.currency_symbol : GeneralConfig.fraction}}</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="form-group no-mar"> <label class="sr-only col-sm-4 control-label" for="submit">{{'Submit'|translate}}</label>
+                                                <div class="col-sm-8"><button id="submit" class="btn btn-primary" type="submit">{{'Submit' | translate }}</button></div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="panel-heading" ng-show="vm.cashWithdrawalsList.length && !vm.loader">
+                                    <div class="add-wallet-table">
+                                        <div class="notfications-content">
+                                            <h3 class="h4 ver-space15">{{'Cash Withdraw Requests'|translate}}</h3>
+                                        </div>
+                                        <div class="table-responsive pg-table">
+                                            <table class="table no-mar table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>{{'Created' |translate}}</th>
+                                                        <th>{{'Account'|translate}}
+                                                            <th>{{'Amount' |translate}}({{settings.CURRENCY_SYMBOL}})</th>
+                                                            <th>{{'Status' |translate}}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="userCashWithdrawals in vm.cashWithdrawalsList">
+                                                        <td class="col-sm-3">{{userCashWithdrawals.created_at |amDateFormat:'LL'}}</td>
+                                                        <td>{{userCashWithdrawals.money_transfer_account.account}}</td>
+                                                        <td>{{userCashWithdrawals.amount}}</td>
+                                                        <td>{{userCashWithdrawals.withdrawal_status.name}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-heading">
+                            <div class="alert alert-danger" ng-show="!vm.loader && !vm.cashWithdrawalsList.length">
+                                <p class="text-center">{{'No Cash Withdrawals Found'|translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- START: ACTION FREE SECTION -->
+    <section class="sec-action-blk">
+        <div class="container">
+            <div class="pull-right list-rgt">
+                <div class="row" ng-show="!vm.loader">
+                    <div class="col-md-12 text-center" ng-hide="(vm.cashWithdrawalsList.length < vm.itemsPerPage) && vm.currentPage==1">
+                        <uib-pagination ng-hide="!vm.cashWithdrawalsList.length" previous-text="Previous" next-text="Next" total-items="vm.totalItems" num-pages="numPages" ng-model="vm.currentPage" max-size="vm.maxSize" class="pagination-sm" boundary-link-numbers="true"
+                            rotate="false" items-per-page="vm.itemsPerPage" ng-change="vm.paginate()"></uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- START: SUBMIT FREE SECTION -->
+    <div ng-if="!vm.loader" ng-include="'views/submit_free_ad.html'"></div>
+    <!-- END: SUBMIT FREE SECTION -->
+    <!--<div ng-include="'views/main_categories.html'"></div>-->
+    <!-- END: POPULAR SEARCH SECTION -->
+</div>

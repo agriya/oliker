@@ -1,0 +1,9 @@
+{
+	"name": "Ad/Ad", 
+	"class": "fa fa-2x fa-picture-o",
+	"description": "Ad",
+	"dependencies": "Ad",
+	"module_id": "",
+	"module_hash": "",
+	"display_order": "1"
+}

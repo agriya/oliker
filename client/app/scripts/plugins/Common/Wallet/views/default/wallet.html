@@ -1,0 +1,81 @@
+<div ng-controller='WalletController as vm'>
+    <!-- BEGIN:  TABLE-BLK SECTION -->
+    <div ng-include="'views/main_tab.html'"></div>
+    <!-- END: TABLE-BLK SECTION -->
+    <section class="table-content custom-tabs">
+        <div class="container">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="hom">
+                    <div class="thumbnail">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div ng-include="'views/menu_tab.html'"></div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div ng-include="'views/loader.html'"></div>
+                            <div role="tabpanel" class="tab-pane fade in active" ng-show="!vm.loader" id="home-acti">
+                                <div class="notfications-content">
+                                    <h3 class="h4 ver-space15">{{'Add Amount To Wallet'|translate}}</h3>
+                                </div>
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <p class="alert alert-danger text-center">{{'Available wallet amount'|translate}}:&nbsp;<span class="textb text-16">{{vm.user_available_balance | currency : selectedCurrency.currency_symbol : GeneralConfig.fraction}}</span></p>
+                                        <form class="clearfix form-horizontal"
+                                            role="form" name="WalletForm" ng-submit="vm.WalletFormSubmit(WalletForm.$valid)">
+                                            <div class="col-sm-10 col-sm-offset-2">
+                                                <div class="col-sm-10" ng-class="{ 'has-error' : ((WalletForm.$submitted || WalletForm.amount.$touched) && (WalletForm.amount.$pristine || WalletForm.amount.$invalid)) || amountErr }">
+                                                    <div class="row"> <label class="col-sm-4 control-label text-right" for="amount">{{'Amount'|translate}}</label>
+                                                        <div class="col-sm-8"> <input type="number" min="{{vm.minimum_wallet_amount}}" max="{{vm.maximum_wallet_amount}}" class="form-control" name="amount" id="amount" placeholder="{{'Amount'|translate}}" ng-model="vm.amount"
+                                                                ng-change="amountErr=''" required>
+                                                            <div ng-show="((WalletForm.$submitted || WalletForm.amount.$touched) && (WalletForm.amount.$pristine || WalletForm.amount.$invalid)) || amountErr"> <span class="help-block error" ng-show="(WalletForm.amount.$error.required)">
+                                    {{'You must enter the amount' | translate}}
+                                </span> <span class="help-block error" ng-show="(WalletForm.amount.$error.number)">
+                                    {{'You did not enter a valid number' | translate}}
+                                </span> <span class="help-block error" ng-show="(WalletForm.amount.$error.min)">
+                                    {{'Your field value is lesser than minimum value' | translate}}
+                                </span> <span class="help-block error" ng-show="(WalletForm.amount.$error.max)">
+                                    {{'Your field value is greater than maximum value' | translate}}
+                                </span> <span class="help-block error" ng-show="amountErr">
+                                    {{amountErr}}
+                                </span> </div>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="list-inline col-sm-offset-4 left-space navbar-btn">
+                                                        <li>{{'Minimum amount'|translate}}:&nbsp;<span>{{vm.minimum_wallet_amount | currency : selectedCurrency.currency_symbol : GeneralConfig.fraction}}</span></li>
+                                                        <li>{{'Maximum amount'|translate}}:&nbsp;<span>{{vm.maximum_wallet_amount | currency : selectedCurrency.currency_symbol : GeneralConfig.fraction}}</span></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-xs-12 row">
+                                                <div class="panel clearfix space">
+                                                    <section class="table-blk table-add">
+                                                        <div ng-include="'scripts/plugins/Common/Paypal/views/default/gateways_menu.html'"></div>
+                                                    </section>
+                                                    <!-- END: TABLE-BLK SECTION -->
+                                                    <div ng-if="vm.zazpay === true" class="well-sm">
+                                                        <div class="row">
+                                                            <div ng-include="'views/gateway.html'"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div ng-if="vm.paypal === true" class="well-sm">
+                                                        <div class="row">
+                                                            <div ng-include="'scripts/plugins/Common/Paypal/views/default/paypal.html'"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div ng-if="!vm.loader" ng-include="'views/submit_free_ad.html'"></div>
+    <!-- END: SUBMIT FREE SECTION -->
+    <!--<div ng-include="'views/main_categories.html'"></div>--></div>

@@ -1,0 +1,77 @@
+<div ng-controller='UsersSettingsController as vm'>
+    <!-- BEGIN:  TABLE-BLK SECTION -->
+    <section class="table-blk">
+        <div ng-include="'views/main_tab.html'"></div>
+    </section>
+    <!-- END: TABLE-BLK SECTION -->
+    <section class="table-content custom-tabs">
+        <div class="container">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="hom">
+                    <div class="thumbnail">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div ng-include="'views/menu_tab.html'"></div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div ng-include="'views/loader.html'"></div>
+                            <div role="tabpanel" class="tab-pane fade in active" id="home-acti">
+                                <div class="notfications-content">
+                                    <h3 class="h4 ver-space15">{{'Account Settings'|translate}}</h3>
+                                </div>
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <form class="form-horizontal adminpg-form" role="form" name="userSettingsForm" ng-submit="vm.save(userSettingsForm.$valid)">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-2"> <label for="inputFirstName3" class="control-label required">{{'First name'|translate}}<span class="text-danger">&nbsp;*</span></label></div>
+                                                    <div class="col-sm-8"> <input type="text" ng-model="vm.userSettings.first_name" pattern="[a-zA-Z]+" title='{{"Only Enter Letters"|translate}}' class="form-control" id="inputFirstName3" autocomplete="off" required> </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-2"> <label for="inputLastName3" class="control-label required">{{'Last name'|translate}}<span class="text-danger">&nbsp;*</span></label></div>
+                                                    <div class="col-sm-8"> <input type="text" ng-model="vm.userSettings.last_name" pattern="[a-zA-Z]+" title='{{"Only Enter Letters"|translate}}' class="form-control" required="required" id="inputLastName3" autocomplete="off"
+                                                            required> </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-2"> <label for="inputLastName3" class="control-label required">{{'About'|translate}}</span></label></div>
+                                                    <div class="col-sm-8"> <textarea ng-model="vm.userSettings.about_me" name="message" class="form-control"></textarea></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-2"> <label for="inputLastName3" class="control-label required">{{'Location'|translate}}</label></div>
+                                                    <div class="col-sm-8"><input type="text" g-places-autocomplete ng-model="vm.place" autocomplete="off" class="form-control mbtm-smspace" id="exampleInputPassword1"> </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 ver-space no-xs-space"> <img ng-src="{{vm.user.user_avatar_url}}" ngf-select ng-model="file" name="file" ng-change="vm.upload(file)" alt="[Image: UserAvatar]" title="{{'upload'|translate}}">
+                                                    <a href="" class="btn btn-default" ngf-select
+                                                        ng-model="file" ng-change="vm.upload(file)"> <span class="font-wei500 text-16"><i class="fa fa-upload fa-fw" title="{{'upload'|translate}}"></i> Upload</span></a>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-offset-2 col-sm-8"> <button type="submit" ng-show="vm.save_btn" class="btn textb btn-primary disabled">{{'Save'|translate}}</button> <button type="submit" ng-show="!vm.save_btn" class="btn textb btn-primary">{{'Save'|translate}}</button>                                                    </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END: ACTION FREE SECTION -->
+    <!-- START: SUBMIT FREE SECTION -->
+    <!-- START: SUBMIT FREE SECTION -->
+    <div ng-include="'views/submit_free_ad.html'"></div>
+    <!-- END: SUBMIT FREE SECTION -->
+    <!--<div ng-include="'views/main_categories.html'"></div>-->
+    <!-- END: POPULAR SEARCH SECTION -->
+</div>

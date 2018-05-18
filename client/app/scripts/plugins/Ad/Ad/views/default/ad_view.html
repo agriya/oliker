@@ -1,0 +1,196 @@
+<div class="main">
+    <div class="detail-main" ng-controller="AdviewController as vm">
+        <!-- BEGIN: BREAD CRUMB SECTION -->
+        <div class="breadcrumb-block">
+            <div class="container">
+                <ol class="breadcrumb no-mar">
+                    <li class="breadcrumb-item">
+                        <a href="/app" title='{{"Home"|translate}}'><img src="/images/bread-home.png" alt="[Image:Home]"></a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="ads?category_id={{vm.ad.category_id}}" title="{{vm.ad.category.name}}">{{vm.ad.category.name}}</a></li>
+                    <li class="breadcrumb-item" title="{{vm.ad.title}}">{{vm.ad.title}}</li>
+                </ol>
+            </div>
+        </div>
+        <!-- END: BREAD CRUMB SECTION -->
+        <!-- BEGIN: FOLDING TABLE SECTION -->
+        <div class="container">
+            <div class="fold-table-sec">
+                <h3 class="fold-head" title="{{vm.ad.title}}">{{vm.ad.title}}</h3>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="list-inline navbar-left navbar-btn text-center folding-list">
+                            <li ng-show="vm.ad.is_urgent"> <a title='{{"Urgent" | translate}}' class="btn btn-danger btn-sm">{{'Urgent'|translate}}</a> </li>
+                            <li ng-show="vm.ad.is_highlighted"> <a title='{{"Highlighted"| translate}}' class="btn btn-danger btn-sm">{{'Highlighted'|translate}}</a> </li>
+                            <li ng-show="vm.ad.is_show_ad_in_top"> <a title='{{"To Top"| translate}}' class="btn btn-danger btn-sm">{{'To Top'|translate}}</a> </li>
+                            <li ng-show="vm.ad.is_show_as_top_ads"> <a title='{{"Top Ads"| translate}}' class="btn btn-danger btn-sm">{{'Top Ads'|translate}}</a> </li>
+                        </ul>
+                        <ul class="list-inline fold-date-ul navbar-right text-center">
+                            <li title="{{ vm.ad.created_at | amDateFormat: 'LL' }}">{{'Added On'|translate}}:{{vm.ad.created_at | amDateFormat:'LL'}}</a>
+                            </li>
+                            <li title='{{"Ad ID"|translate}}'><i class="fa fa-tag"></i>{{'Ad ID'|translate}}:{{vm.ad.id}} </li>
+                            <li title='{{"Views"|translate}}'> <i class="fa fa-eye"></i> {{vm.ad.ad_view_count}} {{'Views'|translate}} </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="fold-desc-block">
+                            <h3 class="navbar-btn">{{'Description'|translate}}:</h3>
+                            <p> {{vm.ad.description}} </p>
+                            <div>
+                                <h3 ng-if="vm.ad.ad_form_field.length">{{'Product Details'|translate}}:</h3>
+                                <div ng-repeat="ad_field in vm.ad.ad_form_field">
+                                    <dl class="dl-horizontal"> <dt>{{ad_field.form_field[0].label}}</dt>
+                                        <dd>{{ad_field.response}}</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div style='overflow:hidden;height:100%;width:100%;margin-bottom: 30px;'>
+                                    <ng-map center="{{vm.ad.latitude}},{{vm.ad.longitude}}">
+                                        <marker position="{{vm.ad.latitude}},{{vm.ad.longitude}}"></marker>
+                                    </ng-map> <address class="clearfix text-16">
+                                </div>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <span class="detail-user-link">
+                                                <img ng-src="{{vm.user_image}}" alt="[IMAGE: User]" title='{{"Ad Owner"|translate}}' class="img-responsive">
+                                        </span>
+                                    </div>
+                                    <div class="media-body">
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <h3 class="list-group-item-heading manjuth-head">{{vm.ad.ad_owner.username}}</h3>
+                                            </li>
+                                            <li>
+                                                <p class="active-para navbar-btn text-12" title="{{ vm.ad.ad_owner.created_at | amDateFormat: 'LL' }}">{{'Registered since'|translate}}:{{vm.ad.ad_owner.created_at | amDateFormat:'LL'}}</p>
+                                            </li>
+                                            <report></report>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <ul class="list-inline">
+                                    <li class="h2 no-mar">
+                                        <strong> 
+                                        	{{vm.ad.price| currency : selectedCurrency.currency_symbol : GeneralConfig.fraction}}
+                                           </strong>
+                                    </li>
+                                    <li ng-show="{{vm.ad.is_negotiable}}" class="text-14"> {{'Negotiable'|translate}} </li>
+                                </ul>
+                                <ul class="list-unstyled">
+                                    <li class="hide">
+                                        <img src="/images/verify-phone-num.png" alt="[Image:Verify Phone Number]" 
+                                            class="img-responsive">
+                                    </li>
+                                    <li>
+                                        <a class="btn btn-primary buy-now-btun" title='{{"View Phone Number"|translate}}' ng-click="vm.showPhoneNumber()"><i class="fa fa-phone fa-fw" aria-hidden="true"></i><span ng-show="vm.phone_number"> {{vm.phone_number}}</span>
+                                            <span
+                                                ng-show="!vm.phone_number">91{{'x xxxx xxxx'|translate}} </span>
+                                                <span ng-hide="vm.phone_number">({{'View Number'|translate}})</span>
+                                        </a>
+                                    </li>
+                                    <message></message>                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 no-pad">
+                        <div class="fold-tab-cont">
+                            <div class="tab-content">
+                                <flex-slider class="no-mar" slide="s in vm.ad.attachment track by $index" animation="slide" control-nav="thumbnails">
+                                        <li data-thumb="{{s.big_thumb_url}}">
+                                            <img ng-src="{{s.big_thumb_url}}">
+                                          <favorite item="vm.ad" authentication="mainVm.isAuth"  callback-fn="mainVm.openLoginModal('login')"></favorite>
+                                        </li>
+                                    </flex-slider>
+                            </div>
+                        </div>
+                        <div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="col-sm-6">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!-- END: FOLDING TABLE SECTION -->
+            <!-- BEGIN: TRENDING ADS SECTION -->
+            <div class="container" ng-show="vm.userads.length">
+                <div class="similar-ads-sec">
+                    <h2 class="no-mar">{{'User Ads'|translate}}</h2>
+                    <div id="user-ads-carousal">
+                        <div>
+                            <div uib-carousel active="active_user" interval="vm.myInterval" no-wrap="vm.noWrapSlides">
+                                <div uib-slide ng-repeat="user_ad in vm.userads track by $index" index="$index">
+                                    <div class="col-sm-6 col-md-3" ng-repeat="(key,value) in user_ad">
+                                        <div class="similar-block">
+                                            <a href="ad/{{value.id}}/{{value.slug}}" class="show" title="{{value.title}}"> <img ng-src="{{value.image_name}}" alt="[Image: Ad]" title="{{value.title}}"
+                                                    class="img-responsive"> <span class="show text-center"><i class="fa fa-inr"></i> 
+                                {{value.price}}</span></a>
+                                            <h3 class="text-center truncate-2" title="{{value.title}}">{{value.title}}</h3>
+                                            <ul class="list-inline text-center">
+                                                <li>
+                                                    <i class="fa fa-map-marker"></i>
+                                                   <span class="address-b" title="{{value.location}}">{{value.location}}</span>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-clock-o"></i>
+                                                   <span> <time am-time-ago="value.created_at" title="{{ value.created_at | amDateFormat: ' MMMM Do YYYY, h:mm a' }}"></time></span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="similar-ads-sec">
+                    <h2 class="no-mar">{{'Similar Ads'|translate}}</h2>
+                    <div id="similar-ads-carousal">
+                        <div>
+                            <div uib-carousel active="active_similar" interval="vm.myInterval" no-wrap="vm.noWrapSlides">
+                                <div uib-slide ng-repeat="ad in vm.relatedads track by $index" index="$index">
+                                    <div class="col-sm-6 col-md-3" ng-repeat="(key,value) in ad">
+                                        <div class="similar-block">
+                                            <a href="ad/{{value.id}}/{{value.slug}}" class="show"> <img ng-src="{{value.image_name}}" alt="[Image:Ad]"
+                                                    class="img-responsive"> <span class="show text-center"><i class="fa fa-inr"></i> 
+                                {{value.price}}</span></a>
+                                            <h3 class="text-center truncate-2" title="{{value.title}}">{{value.title}}</h3>
+                                            <ul class="list-inline text-center">
+                                                <li>
+                                                    <i class="fa fa-map-marker"></i>
+                                                    <span class="address-b" title="{{value.location}}">{{value.location}}</span>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-clock-o"></i>
+                                                 <span> <time am-time-ago="value.created_at" title="{{ value.created_at | amDateFormat: ' MMMM Do YYYY, h:mm a'}}"></time></span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <!-- END: SEARCH LISTS -->
+    <!-- BEGIN: SUBMIT FREE ADD SECTION -->
+<!-- START: SUBMIT FREE SECTION -->
+<div ng-include="'views/submit_free_ad.html'"></div>
+<!-- END: SUBMIT FREE SECTION -->
+<!--<div ng-include="'views/main_categories.html'"></div>-->
+</div>
+<!-- END: main -->
+</div>
