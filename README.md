@@ -2,6 +2,8 @@
 
 Oliker is an open source classified platform that is capable to run classified sites similar to OLX, Quickr, etc (You can say OLX clone). It is written in AngularJS with REST API for high performance in mind.
 
+> This is project is part of Agriya Open Source efforts. Oliker was originally a paid script and was selling around 10000 Euros. It is now released in dual license for open source community benefits.
+
 ![Agriya Oliker Classified platform](https://user-images.githubusercontent.com/4907427/45162572-ed466c80-b20b-11e8-9640-80e2b6ffb6b1.jpg)
 
 ## Support
