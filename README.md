@@ -1,58 +1,43 @@
 # Oliker
 
-## Slim: 3.* & Angular Base Script
+Oliker is an open source classified platform that is capable to run classified sites similar to OLX, Quickr, etc (You can say OLX clone). It is written in AngularJS with REST API for high performance in mind.
 
-## Requirements:
 
-* Nginx 
-* PHP >= 5.5.9
-* Enable extensions in **php.ini** file(OpenSSL PHP Extension, PDO PHP Extension, Mbstring PHP Extension, curl)
+TODO insert screenshot
+
+## Support
+
+Oliker classified platform is an open source project. Full commercial support (commercial license, customization, training, etc) are available through [Oliker classified platform support](https://www.agriya.com/solutions/classified-ads-solution)
+
+Theming partner [CSSilize for design and HTML conversions](http://cssilize.com/)
+
+## Getting Started
+
+### Prerequisites
+
+#### For deployment
+
+* PostgreSQL
+* PHP >= 5.5.9 with OpenSSL, PDO, Mbstring and cURL extensions
+* Nginx (preferred) or Apache
+
+#### For building (build tools)
+
 * Nodejs
 * Composer
 * Bower
 * Grunt
 
+### Setup
 
-## Server Side:
-### Composer Updation:
+* PHP dependencies are handled through `composer` (Refer `/server/php/Slim/`)
+* JavaScript dependencies are handled through `bower` (Refer `/client/`)
+* Needs writable permission for `/tmp/` and `/media/` folders found within project path
+* Build tasks are handled through `grunt`
+* Database schema `/sql/oliker_with_empty_data.sql`
 
-* To Update the Composer, please run the below command in following path `/Oliker/server/php/Slim`.  
+### License
 
-        composer update
-    
-* The above Updation doesn't work to you, need to install Composer, please refer this link **https://getcomposer.org/**  for "**How to install Composer**".
+Copyright (c) 2014-2018 [Agriya](https://www.agriya.com/).
 
-## Import db: 
-
-1. Oliker/sql/oliker_with_empty_data.sql
-
-
-## Front Side:
-
-* You need to install nodejs, bower, grunt.
-
-* Go to "/Oliker/client" path in command prompt.
-
-* Run the below command, the bower used to download and installed all front-end development libraries.
-
-        bower install
-
-* The npm used to install the all dependencies in the local node_modules folder. [Click here](http://git8.ahsan.in/root/LaravelBase/blob/master/trunk/lumen/docs/Npm.md) for more npm details.
-
-        npm install    
-
-
-## Default folder create and give permission 
-
-        /tmp
-        /media
-
-# upload to server
-
-* need to create json, "**/Oliker/client/builds/XXX.json**" [already dev.json available, take one copy and update server & db details]
-* If modify the files in local, you should run the below command for further updation.  
-  
-  cd "/Oliker/client/"
-
-        grunt build:xxx      
-
+Dual License (OSL 3.0 & [Commercial License](https://www.agriya.com/contact))
