@@ -37,6 +37,16 @@ Theming partner [CSSilize for design and HTML conversions](http://cssilize.com/)
 * Build tasks are handled through `grunt`
 * Database schema `/sql/oliker_with_empty_data.sql`
 
+### Contributing
+
+Our approach is similar to Magento. If anything is not clear, please [contact us](https://www.agriya.com/contact).
+
+All Submissions you make to Oliker through GitHub are subject to the following terms and conditions:
+
+* You grant Agriya a perpetual, worldwide, non-exclusive, no charge, royalty free, irrevocable license under your applicable copyrights and patents to reproduce, prepare derivative works of, display, publicly perform, sublicense and distribute any feedback, ideas, code, or other information ("Submission") you submit through GitHub.
+* Your Submission is an original work of authorship and you are the owner or are legally entitled to grant the license stated above.
+
+
 ### License
 
 Copyright (c) 2014-2018 [Agriya](https://www.agriya.com/).
